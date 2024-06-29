@@ -1,0 +1,87 @@
+.ListBox {
+    position: relative;
+}
+
+.ListBoxWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    padding: 8px 10px;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+.trigger {
+    min-width: 100px;
+    padding: 8px 10px;
+    border-radius: var(--border-radius);
+    background: var(--bg-color);
+    cursor: pointer;
+    border: none;
+    color: var(--text-color);
+}
+
+.triggerTitle {
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+.top_list {
+    .options {
+        position: absolute;
+        z-index: 10000;
+        width: 100%;
+        margin-bottom: 45px;
+        bottom: 0;
+        max-height: 220px;
+        overflow-y: auto;
+        background: var(--bg-color);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--inverted-bg-color);
+    }
+}
+
+.bottom_list {
+    .options {
+        position: absolute;
+        max-height: 220px;
+        overflow-y: auto;
+        z-index: 10000;
+        width: 100%;
+        margin-top: 5px;
+        background: var(--bg-color);
+        border-radius: var(--border-radius);
+        border: 1px solid var(--inverted-bg-color);
+    }
+}
+
+.item {
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.active {
+    color: var(--inverted-text-color);
+}
+
+.selected {
+    color: var(--secondary-color);
+    background: var(--primary-color);
+}
+
+.disabled {
+    .trigger {
+        border: none;
+        color: var(--primary-color);
+        cursor: auto;
+    }
+}
+
+.disabledItem {
+    opacity: 0.5;
+    display: none;
+}

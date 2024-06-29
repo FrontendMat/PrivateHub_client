@@ -1,0 +1,66 @@
+.primary {
+    fill: var(--primary-color);
+}
+
+.secondary {
+    fill: var(--secondary-color);
+}
+
+.gray {
+    fill: var(--inverted-text-color);
+}
+
+.green {
+    fill: var(--green-color);
+}
+
+.red {
+    fill: var(--red-color);
+}
+
+.yellow {
+    fill: var(--yellow-color);
+}
+
+.primary_hover:hover {
+    fill: var(--primary-color);
+}
+
+.secondary_hover:hover {
+    fill: var(--secondary-color);
+}
+
+.gray_hover:hover {
+    fill: var(--inverted-text-color);
+}
+
+.green_hover:hover {
+    fill: var(--green-color);
+}
+
+.red_hover:hover {
+    fill: var(--red-color);
+}
+
+.yellow_hover:hover {
+    fill: var(--yellow-color);
+}
+
+.size_small {
+    width: 20px;
+    height: 20px;
+}
+
+.size_medium {
+    width: 30px;
+    height: 30px;
+}
+
+.size_large {
+    width: 40px;
+    height: 40px;
+}
+
+.pointer {
+    cursor: pointer;
+}

@@ -1,0 +1,43 @@
+.item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    width: 100%;
+
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+.link {
+    margin-left: 10px;
+    opacity: 1;
+    outline: none;
+    text-decoration: none;
+}
+
+.icon {
+    fill: var(--text-color);
+    width: 20px;
+}
+
+.active {
+    background: var(--primary-color);
+
+    .link {
+        color: var(--secondary-color);
+    }
+
+    .icon {
+        fill: var(--secondary-color);
+    }
+}
+
+.collapsed {
+    .link {
+        display: none;
+        transition: 0.4s;
+    }
+}

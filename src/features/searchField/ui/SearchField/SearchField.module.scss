@@ -1,0 +1,23 @@
+.SearchField {
+    display: flex;
+    align-items: center;
+    width: 460px;
+}
+
+.iconWrapper {
+    padding: 9px 10px;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    border-radius: var(--border-radius) 0 0 var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon {
+    fill: var(--secondary-color)
+}
+
+.cancelBtn {
+    margin-left: 15px;
+}

@@ -1,0 +1,27 @@
+.Textarea {
+    background: transparent;
+    border: 1px solid var(--inverted-text-color);
+    border-radius: var(--border-radius);
+    outline: none;
+    color: var(--inverted-text-color);
+    padding: 10px;
+    width: 100%;
+
+    &:focus {
+        border: 1px solid var(--primary-color);
+    }
+}
+
+.background {
+    background: var(--bg-color);
+    border: 1px solid var(--inverted-bg-color);
+}
+
+.readonly {
+    width: fit-content;
+    resize: none;
+
+    &:focus {
+        border: 1px solid var(--inverted-bg-color);
+    }
+}

@@ -1,0 +1,74 @@
+.TaskItem {
+    border-radius: var(--border-radius);
+    background: var(--inverted-bg-color);
+}
+
+.id,
+.date,
+.name,
+.title,
+.type,
+.level,
+.status,
+.actions {
+    padding: 10px;
+    text-align: left;
+}
+
+.TaskItem td {
+    margin: 15px;
+}
+
+.header {
+    border-radius: var(--border-radius);
+}
+
+.td {
+    padding: 10px;
+}
+
+.title {
+    margin: 10px;
+    min-width: 200px;
+    max-width: 280px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.statusIcons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.actions {
+    display: flex;
+    padding: 10px;
+    justify-content: space-around;
+}
+
+.done {
+    fill: var(--success-green-color);
+}
+
+.notDone {
+    fill: var(--error-red-color);
+}
+
+.deleteIcon {
+    fill: var(--inverted-text-color);
+    cursor: pointer;
+
+    &:hover {
+        fill: var(--error-red-color);
+    }
+}
+
+.eyeIcon {
+    fill: var(--inverted-text-color);
+    cursor: pointer;
+
+    &:hover {
+        fill: var(--success-green-color);
+    }
+}

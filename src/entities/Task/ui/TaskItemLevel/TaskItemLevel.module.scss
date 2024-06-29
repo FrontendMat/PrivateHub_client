@@ -1,0 +1,28 @@
+.TaskItemLevel {
+    padding: 3px 2px;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    max-width: 80px;
+}
+
+.Low {
+    background: var(--success-green-opacity-color);
+    color: var(--success-green-color);
+}
+
+.Medium {
+    background: var(--warning-yellow-opacity-color);
+    color: var(--warning-yellow-color);
+}
+
+.High {
+    background: var(--error-red-opacity-color);
+    color: var(--error-red-color)
+}
+
+.Hell {
+    background: var(--primary-opacity-color);
+    color: var(--primary-color)
+}

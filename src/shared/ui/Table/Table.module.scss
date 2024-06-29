@@ -1,0 +1,35 @@
+.TableHeader {
+  padding: 10px 20px;
+  width: 100%;
+  color: var(--secondary-color);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.TableBody {
+  padding: 8px 0;
+  height: 216px;
+  overflow-y: auto;
+}
+
+.TableFooter {
+  padding: 10px 20px;
+  width: 100%;
+  color: var(--secondary-color);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.primary_bg {
+  background-color: var(--primary-color);
+}
+
+.red_bg {
+  background-color: var(--red-color);
+}
+
+.green_bg {
+  background-color: var(--green-color);
+}
+
+.yellow_bg {
+  background-color: var(--yellow-color);
+}
