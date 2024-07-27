@@ -3,8 +3,7 @@ import cls from './Table.module.scss';
 import {useTranslation} from "react-i18next";
 import React, {memo, ReactNode} from "react";
 import {HStack, VStack} from "shared/ui/Stack";
-import {Text, TextTheme} from "shared/ui/Text/Text";
-import {Card} from "shared/ui/Card";
+import {Text} from "shared/ui/Text/Text";
 
 export type TableHeaderTheme = 'primary' | 'red' | 'green' | 'yellow';
 
@@ -16,7 +15,8 @@ interface TableHeaderProps {
     theme: TableHeaderTheme;
     icon?: React.VFC<React.SVGProps<SVGSVGElement>>;
     onOpenModal?: () => void;
-    children: ReactNode
+    children: ReactNode;
+    actions?: ReactNode;
 }
 
 const themeClasses: Record<TableHeaderTheme, string> = {
@@ -33,9 +33,8 @@ export const Table = memo((props: TableHeaderProps) => {
         bottomTitle,
         totalValue = 0,
         theme = 'primary',
-        icon,
         children,
-        onOpenModal
+        actions
     } = props;
     const {t} = useTranslation();
 
@@ -45,7 +44,7 @@ export const Table = memo((props: TableHeaderProps) => {
     ]
 
     return (
-        <>
+        <VStack max>
             <HStack
                 max
                 align={'center'}
@@ -53,9 +52,15 @@ export const Table = memo((props: TableHeaderProps) => {
                 className={classNames(cls.TableHeader, {}, additional)}
             >
                 {topTitle}
-                <Text text={'Value'} theme={TextTheme.SECONDARY}/>
+                <HStack align={'center'}>
+                    {actions}
+                </HStack>
+                <Text
+                    text={'Value'}
+                    theme={'secondary'}
+                />
             </HStack>
-            <VStack gap={'8'} className={cls.TableBody}>
+            <VStack max gap={'8'} className={cls.TableBody}>
                 {children}
             </VStack>
             <HStack
@@ -65,8 +70,12 @@ export const Table = memo((props: TableHeaderProps) => {
                 className={classNames(cls.TableFooter, {}, additional)}
             >
                 {bottomTitle}
-                <Text text={String(totalValue)} theme={TextTheme.SECONDARY}/>
+                <Text
+                    text={String(totalValue)}
+                    theme={'secondary'}
+                    bold
+                />
             </HStack>
-        </>
+        </VStack>
     );
 });

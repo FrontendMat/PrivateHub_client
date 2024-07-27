@@ -3,19 +3,22 @@ import {memo, Suspense} from "react";
 import {Modal} from "shared/ui/Modal/Modal";
 import {Loader} from "shared/ui/Loader/Loader";
 import {AddNewFinanceCategoryFormAsync} from "../AddNewFinanceCategoryForm/AddNewFinanceCategoryForm.async";
+import {FinanceType} from "entities/Finance";
 
 interface AddNewFinanceCategoryModalProps {
     className?: string;
     isOpen?: boolean;
     onClose: () => void;
-    onSuccess: () => void;
+    financeType: FinanceType;
+    title: string
 }
 
 export const AddNewFinanceCategoryModal = memo((props: AddNewFinanceCategoryModalProps) => {
     const {
         className,
         isOpen,
-        onSuccess,
+        financeType,
+        title,
         onClose,
     } = props;
 
@@ -29,7 +32,8 @@ export const AddNewFinanceCategoryModal = memo((props: AddNewFinanceCategoryModa
             <Suspense fallback={<Loader/>}>
                 <AddNewFinanceCategoryFormAsync
                     onModalClose={onClose}
-                    onSuccess={onSuccess}
+                    financeType={financeType}
+                    title={title}
                 />
             </Suspense>
         </Modal>

@@ -18,12 +18,12 @@ export const BlockSwitcherData = memo((props: BlockSwitcherDataProps) => {
     } = props;
     const isHide = id !== currentId;
 
-    const mods: Mods = {
-        [cls.hide]: isHide
+    if (isHide) {
+        return null;
     }
 
     return (
-        <div className={classNames(cls.BlockSwitcherData, mods, [className])}>
+        <div className={classNames(cls.BlockSwitcherData, {}, [className])}>
             {children}
         </div>
     );

@@ -1,11 +1,13 @@
 import {classNames} from "shared/lib/classNames/classNames";
 import cls from './Alert.module.scss';
-import {memo} from "react";
+import {memo, useEffect, useState} from "react";
 import {Icon, IconSize} from "shared/ui/Icon/Icon";
 import SuccessIcon from "shared/assets/icons/true.svg";
 import ErrorIcon from "shared/assets/icons/error.svg";
 import WarningIcon from "shared/assets/icons/error.svg";
-import {Text} from "shared/ui/Text/Text";
+import {Portal} from "shared/ui/Portal/Portal";
+import {useTheme} from "shared/lib/hooks/useTheme/useTheme";
+import {HStack} from "shared/ui/Stack";
 
 export enum AlertTheme {
     SUCCESS = 'success',
@@ -15,7 +17,7 @@ export enum AlertTheme {
 
 interface AlertProps {
     className?: string;
-    theme?: AlertTheme,
+    color?: AlertTheme,
     text?: string
 }
 
@@ -23,11 +25,13 @@ export const Alert = memo((props: AlertProps) => {
     const {
         className,
         text,
-        theme = AlertTheme.SUCCESS
+        color = AlertTheme.SUCCESS
     } = props;
-    
+    const {theme} = useTheme();
+    const [isVisible, setIsVisible] = useState(true);
+
     let alertIcon;
-    switch (theme) {
+    switch (color) {
     case AlertTheme.SUCCESS: 
         alertIcon = SuccessIcon;
         break;
@@ -41,9 +45,25 @@ export const Alert = memo((props: AlertProps) => {
         alertIcon = SuccessIcon;
     }
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsVisible(false)
+        }, 6000)
+
+        return () => clearTimeout(timer)
+    }, []);
+    
+    if (!isVisible) {
+        return null
+    }
+
     return (
-        <div className={cls.Alert}>
-            <div className={classNames(cls.AlertBg, {}, [className, cls[theme]])}>
+        <Portal>
+            <HStack
+                align={'center'}
+                gap={'8'}
+                className={classNames(cls.Alert, {}, [className, theme, cls[color], 'app_modal'])}
+            >
                 <Icon
                     Svg={alertIcon}
                     className={cls.icon}
@@ -52,7 +72,7 @@ export const Alert = memo((props: AlertProps) => {
                 <p>
                     {text}
                 </p>
-            </div>
-        </div>
+            </HStack>
+        </Portal>
     );
 });

@@ -1,15 +1,3 @@
-.wrapper {
-    display: flex;
-    align-items: center;
-}
-
-.title {
-    padding: 8px 10px;
-    background: var(--primary-color);
-    color: var(--secondary-color);
-    border-radius: var(--border-radius) 0 0 var(--border-radius);
-}
-
 .container input {
     position: absolute;
     opacity: 0;
@@ -22,7 +10,7 @@
     display: block;
     position: relative;
     cursor: pointer;
-    font-size: 30.8px;
+    font-size: 20px;
     user-select: none;
 }
 
@@ -30,10 +18,11 @@
     position: relative;
     top: 0;
     left: 0;
-    height: 40px;
-    width: 40px;
+    height: 1.3em;
+    width: 1.3em;
     background: var(--bg-color);
-    border-radius: var(--border-radius);
+    border-radius: 5px;
+    border: 1px solid var(--green-color);
 }
 
 .checkmarkTitle {
@@ -65,5 +54,5 @@
 }
 
 .readonly {
-        cursor: auto;
+    cursor: auto;
 }

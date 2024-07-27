@@ -1,8 +1,5 @@
-import {classNames} from "shared/lib/classNames/classNames";
-import cls from './BlockSwitcherNav.module.scss';
 import {useTranslation} from "react-i18next";
 import {memo, useCallback} from "react";
-import {HStack} from "shared/ui/Stack";
 import {Button, ButtonTheme} from "shared/ui/Button/Button";
 
 interface BlockSwitcherNavProps {

@@ -1,43 +1,59 @@
 .item {
-    display: flex;
-    align-items: center;
     cursor: pointer;
-    padding: 10px 15px;
+    padding: 11px 14px;
     border-radius: var(--border-radius);
     width: 100%;
 
     &:hover {
-        opacity: 0.8;
+        background: var(--bg-color);
+
+        .link {
+            color: var(--text-color);
+        }
+
+        .icon {
+            fill: var(--text-color);
+        }
     }
 }
 
 .link {
     margin-left: 10px;
-    opacity: 1;
     outline: none;
     text-decoration: none;
+    color: var(--inverted-text-color);
 }
 
 .icon {
-    fill: var(--text-color);
+    fill: var(--inverted-text-color);
     width: 20px;
+    height: 20px;
 }
 
 .active {
-    background: var(--primary-color);
+    background: var(--bg-color);
 
     .link {
-        color: var(--secondary-color);
+        color: var(--primary-color);
     }
 
     .icon {
-        fill: var(--secondary-color);
+        fill: var(--primary-color);
+    }
+
+    &:hover {
+        .link {
+            color: var(--primary-color);
+        }
+
+        .icon {
+            fill: var(--primary-color);
+        }
     }
 }
 
 .collapsed {
     .link {
         display: none;
-        transition: 0.4s;
     }
 }

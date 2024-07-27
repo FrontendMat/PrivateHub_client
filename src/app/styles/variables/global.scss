@@ -1,31 +1,44 @@
 :root {
     /* Шрифти */
     --font-family-main: "Roboto", sans-serif;
-    --font-size-m: 16px;
-    --font-line-m: 24px;
+
+    --font-size-s: 10px;
+    --font-line-s: 1.5;
+    --font-s: var(--font-size-s) / var(--font-line-s) var(--font-family-main);
+
+    --font-size-m: 14px;
+    --font-line-m: 1.5;
     --font-m: var(--font-size-m) / var(--font-line-m) var(--font-family-main);
-    --font-size-l: 24px;
-    --font-line-l: 32px;
+
+    --font-size-l: 18px;
+    --font-line-l: 1.5;
     --font-l: var(--font-size-l) / var(--font-line-l) var(--font-family-main);
+
+    --font-size-lm: 24px;
+    --font-line-lm: 1.5;
+    --font-lm: var(--font-size-lm) / var(--font-line-lm) var(--font-family-main);
+
     --font-size-xl: 32px;
-    --font-line-xl: 40px;
+    --font-line-xl: 1.5;
     --font-xl: var(--font-size-xl) / var(--font-line-xl) var(--font-family-main);
 
     /* Sizes */
-    --sidebar-width: 290px;
+    --sidebar-width: 280px;
     --sidebar-collapsed-width: 90px;
     --header-height: 80px;
-    --border-radius: 4px;
+    --border-radius: 8px;
 
     /* Colors */
     --green-color: #10b981;
     --red-color: #fb5454;
     --yellow-color: #ffa70b;
-    --green-opacity-color: rgb(16 185 129 / 30%);
-    --red-opacity-color: rgb(251 84 84 / 10%);
-    --yellow-opacity-color: rgb(255 167 11 / 30%);
-    --primary-opacity-color: rgba(60, 80, 224, 0.3);
-    --overlay-modal-color: rgb(0 0 0 / 60%);
+
+    /* Light */
+    --green-light-color: #b9f4e3;
+    --red-light-color: #feb3b3;
+    --yellow-light-color: #ffd48a;
+    --primary-light-color: #a2afff;
+    --overlay-modal-color: rgba(0, 0, 0, 0.8);
 
     /* Z-index */
     --modal-z-index: 100;

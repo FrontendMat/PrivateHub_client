@@ -1,0 +1,1 @@
+export {BadgeNew} from './BadgeNew/BadgeNew'

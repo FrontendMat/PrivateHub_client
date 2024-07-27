@@ -46,6 +46,11 @@
     fill: var(--yellow-color);
 }
 
+.size-xs {
+    width: 15px;
+    height: 15px;
+}
+
 .size_small {
     width: 20px;
     height: 20px;
@@ -59,6 +64,16 @@
 .size_large {
     width: 40px;
     height: 40px;
+}
+
+.size_xl {
+    width: 80px;
+    height: 80px;
+}
+
+.size_very_large {
+    width: 120px;
+    height: 120px;
 }
 
 .pointer {

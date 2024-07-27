@@ -2,8 +2,8 @@ import {classNames, Mods} from "shared/lib/classNames/classNames";
 import cls from './Modal.module.scss'
 import React, {MutableRefObject, ReactNode, useCallback, useEffect, useRef, useState} from "react";
 import { Portal } from "shared/ui/Portal/Portal";
-import {useTheme} from "app/providers/ThemeProvider";
 import {Card} from "shared/ui/Card";
+import {useTheme} from "shared/lib/hooks/useTheme/useTheme";
 
 interface ModalProps {
     className?: string;
@@ -23,17 +23,22 @@ export const Modal = (props: ModalProps) => {
         lazy,
         onClose
     } = props;
-
     const [isClosing, setIsClosing] = useState(false);
     const [isMounted, setIsMounted] = useState(false);
     const timeRef = useRef() as MutableRefObject<ReturnType<typeof setTimeout>>;
     const {theme} = useTheme();
 
     useEffect(() => {
-        if(isOpen) {
+        if (isOpen) {
             setIsMounted(true)
+        }else if (!isOpen && isMounted) {
+            setIsClosing(true);
+            timeRef.current = setTimeout(() => {
+                setIsClosing(false);
+                setIsMounted(false);
+            }, ANIMATION_DELAY);
         }
-    }, [isOpen])
+    }, [isOpen, isMounted])
 
     const closeHandler = useCallback(() => {
         if (onClose) {
@@ -48,6 +53,10 @@ export const Modal = (props: ModalProps) => {
     const onKeyDown = useCallback((e: KeyboardEvent) => {
         if (e.key === 'Escape') {
             closeHandler();
+        }
+
+        if (e.key === 'Enter') {
+            e.preventDefault();
         }
     }, [closeHandler])
 
@@ -71,15 +80,20 @@ export const Modal = (props: ModalProps) => {
         }
     }, [isOpen, onKeyDown])
 
-    if (lazy && !isMounted) {
+    if (lazy && !isMounted && !isOpen) {
         return null;
     }
 
     return (
         <Portal>
             <div className={classNames(cls.Modal, mods, [className, theme, 'app_modal'])}>
-                <div className={cls.overlay} >
-                    <Card padding={'20'} className={cls.content} >
+                <div className={cls.overlay}>
+                    <Card
+                        animate
+                        padding={'20'}
+                        className={cls.content}
+                        onClick={onContentClick}
+                    >
                         {children}
                     </Card>
                 </div>

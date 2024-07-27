@@ -46,7 +46,7 @@
 .bottom_list {
     .options {
         position: absolute;
-        max-height: 220px;
+        max-height: 205px;
         overflow-y: auto;
         z-index: 10000;
         width: 100%;
@@ -64,14 +64,6 @@
     cursor: pointer;
 }
 
-.active {
-    color: var(--inverted-text-color);
-}
-
-.selected {
-    color: var(--secondary-color);
-    background: var(--primary-color);
-}
 
 .disabled {
     .trigger {

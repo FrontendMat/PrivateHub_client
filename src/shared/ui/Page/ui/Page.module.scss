@@ -1,7 +1,19 @@
 .Page {
   flex-grow: 1;
   padding: 20px;
+  position: relative;
   height: calc(100vh - var(--header-height));
   overflow-y: auto;
+  overflow-x: hidden;
   width: calc(100vh - var(--sidebar-width));
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

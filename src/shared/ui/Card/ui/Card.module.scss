@@ -1,10 +1,19 @@
 .Card {
-  background-color: var(--inverted-bg-color);
-  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-primary) 0px 0px 2px 0px, var(--shadow-secondary)  0px 5px 10px -4px;
+}
+
+//Padding
+
+.padding0 {
+  padding: 0;
 }
 
 .padding10 {
   padding: 10px;
+}
+
+.padding16 {
+  padding: 16px 20px;
 }
 
 .padding20 {
@@ -19,6 +28,104 @@
   padding: 60px;
 }
 
+.paddingIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 11px;
+}
+
+.paddingText {
+  padding: 5px 15px;
+}
+
+//Colors
+
+.inverted_bg {
+  background-color: var(--inverted-bg-color);
+}
+
+.primary {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.background {
+  background-color: var(--bg-color);
+}
+
+.secondary {
+  background-color: var(--secondary-color);
+}
+
+.gray {
+  background-color: var(--inverted-text-color);
+}
+
+.green {
+  background-color: var(--green-color);
+  color: var(--secondary-color);
+}
+
+.red {
+  background-color: var(--red-color);
+  color: var(--secondary-color);
+}
+
+.yellow {
+  background-color: var(--yellow-color);
+  color: var(--secondary-color);
+}
+
+//Opacity
+
+.opacity {
+  opacity: 0.6;
+}
+
+//Border
+
+.border_full {
+  border-radius: var(--border-radius);
+}
+
+.border_fullTop {
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
+.border_fullBottom {
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+}
+
+.border_fullLeft {
+  border-radius: var(--border-radius) 0 0 var(--border-radius);
+}
+
+.border_fullRight {
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+//Animation
+
+.animate {
+  opacity: 0;
+  transform: translateY(-20px);
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+//Other
+
 .max {
   width: 100%;
+}
+
+.noShadow {
+  box-shadow: none;
 }

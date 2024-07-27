@@ -2,7 +2,7 @@ import {classNames, Mods} from "shared/lib/classNames/classNames";
 import cls from './Input.module.scss'
 import React, {InputHTMLAttributes, memo} from "react";
 
-type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly'>
+type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onChange' | 'readOnly' | 'required'>
 
 export enum InputTheme {
     OUTLINED = 'outlined',
@@ -15,10 +15,10 @@ interface InputProps extends HTMLInputProps{
     className?: string;
     value?: string | number;
     onChange?: (value: string) => void;
-    autofocus?: boolean;
     readonly?: boolean;
     theme?: InputTheme;
-    icon?: React.VFC<React.SVGProps<SVGSVGElement>>
+    maxWidth?: boolean;
+    required?: boolean;
 }
 
 export const Input = memo((props: InputProps) => {
@@ -28,9 +28,9 @@ export const Input = memo((props: InputProps) => {
         onChange,
         type = 'text',
         placeholder,
-        autofocus,
-        icon,
+        required = true,
         readonly,
+        maxWidth = true,
         theme = InputTheme.OUTLINED,
         ...otherProps
     } = props;
@@ -41,20 +41,18 @@ export const Input = memo((props: InputProps) => {
 
     const mods: Mods = {
         [cls.readonly]: readonly,
+        [cls.max]: maxWidth
     };
 
     return (
-        <>
-
-            <input
-                className={classNames(cls.input, mods, [className, cls[theme]])}
-                readOnly={readonly}
-                type={type}
-                value={value}
-                onChange={onChangeHandler}
-                placeholder={placeholder}
-                {...otherProps}
-            />
-        </>
+        <input
+            className={classNames(cls.input, mods, [className, cls[theme]])}
+            readOnly={readonly}
+            type={type}
+            value={value}
+            onChange={onChangeHandler}
+            placeholder={placeholder}
+            {...otherProps}
+        />
     );
 });

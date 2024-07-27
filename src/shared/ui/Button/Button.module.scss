@@ -1,7 +1,7 @@
 .Button {
     cursor: pointer;
     color: var(--secondary-color);
-    padding: 6px 15px;
+    padding: 7px 14px;
     border-radius: var(--border-radius);
 
     &:hover {
@@ -37,8 +37,13 @@
 }
 
 .background_red {
+    border: 1px solid var(--red-color);
     background: var(--red-color);
-    border: none;
+}
+
+.secondary {
+    background: transparent;
+    border: 1px solid var(--secondary-color);
 }
 
 .background {
@@ -49,7 +54,11 @@
 .background_inverted {
     background-color: var(--bg-color);
     border: 1px solid var(--bg-color);
-    color: var(--text-color)
+    color: var(--inverted-text-color);
+
+    &:hover {
+        color: var(--text-color);
+    }
 }
 
 .square {
@@ -81,4 +90,8 @@
     &:hover {
         opacity: 0.5;
     }
+}
+
+.max {
+    width: 100%;
 }

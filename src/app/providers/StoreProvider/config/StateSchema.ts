@@ -2,23 +2,25 @@ import {AnyAction, EnhancedStore, Reducer, ReducersMapObject} from "@reduxjs/too
 import { CombinedState } from 'redux';
 import {AxiosInstance} from "axios";
 import {UserSchema} from "entities/User";
-import {LoginSchema} from "features/authByUsername";
-import {TasksSchema} from "pages/TasksPage";
-import {AddTaskFormSchema} from "features/addTask";
-import {EditTaskFormSchema} from "features/editTask";
-import {IncomesSchema} from "features/getAndUpdateIncomes";
+import {FinanceSchema} from "entities/Finance";
+import {LoginSchema} from "features/loginByUserEmail";
+import {FinanceResultSchema} from "features/getFinanceResult";
+import {RegistrationSchema} from "features/registerByUsername";
+import {FinanceStatisticSchema} from "features/getFinanceStatistic";
 import {AddFinanceCategorySchema} from "features/addNewFinanceCategory";
+import {AddNewFinanceTransactionSchema} from "features/addNewFinanceTransaction";
 
 export interface StateSchema {
     user: UserSchema,
 
     //Async Reducers
     loginForm?: LoginSchema,
-    tasks?: TasksSchema,
-    addTaskForm?: AddTaskFormSchema,
-    editTaskForm?: EditTaskFormSchema,
-    incomesSchema?: IncomesSchema,
-    addFinanceCategorySchema?: AddFinanceCategorySchema,
+    registrationForm?: RegistrationSchema,
+    finance?: FinanceSchema,
+    addFinanceCategory?: AddFinanceCategorySchema,
+    addNewFinanceTransaction?: AddNewFinanceTransactionSchema,
+    financeStatistic?: FinanceStatisticSchema,
+    financeResult?: FinanceResultSchema;
 }
 
 export type StateSchemaKey = keyof StateSchema;

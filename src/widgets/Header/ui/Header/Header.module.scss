@@ -1,18 +1,5 @@
 .Header {
-    width: 100%;
     height: var(--header-height);
-    background: var(--inverted-bg-color);
-    display: flex;
-    align-items: center;
-    padding: 20px;
-}
-
-.buttons {
-    display: flex;
-    margin-left: auto;
-    align-items: center;
-}
-
-.themeBtn {
-    margin-right: 10px;
+    position: relative;
+    z-index: 1;
 }

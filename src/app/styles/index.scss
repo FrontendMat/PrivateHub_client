@@ -11,17 +11,13 @@
 
 .app {
     background: var(--bg-color);
+    position: relative;
     min-height: 100vh;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
 }
 
 .content-page {
     display: flex;
-}
-
-.login {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
 }

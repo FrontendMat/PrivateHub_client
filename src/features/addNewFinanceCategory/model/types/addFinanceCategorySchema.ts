@@ -4,5 +4,4 @@ export interface AddFinanceCategorySchema {
     isLoading?: boolean,
     error?: string,
     data?: Finance,
-    form?: Finance
 }

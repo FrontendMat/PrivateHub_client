@@ -1,7 +1,7 @@
 .app_light_theme {
     //Background
-    --bg-color: #f1f5f9;
-    --inverted-bg-color: #fff;
+    --bg-color: #f7f7f7;
+    --inverted-bg-color: #ffffff;
 
     //Main
     --primary-color: #3c50e0;
@@ -12,6 +12,10 @@
     --inverted-text-color: #64748b;
 
     //Skeleton
-    --skeleton-color: rgb(56 73 190 / 32%);
+    --skeleton-color: rgba(99, 100, 108, 0.32);
     --skeleton-shadow: rgba(0 0 0 / 20%);
+
+    //Shadow
+    --shadow-primary: rgba(145, 158, 171, 0.3);
+    --shadow-secondary: rgba(145, 158, 171, 0.45);
 }

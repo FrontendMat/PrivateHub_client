@@ -1,13 +1,15 @@
 import {classNames} from "shared/lib/classNames/classNames";
 import cls from './FinanceTable.module.scss';
 import {useTranslation} from "react-i18next";
-import {memo} from "react";
+import {memo, ReactNode} from "react";
 import {Table, TableHeaderTheme} from "shared/ui/Table/Table";
 import AddIcon from "shared/assets/icons/add.svg";
-import {VStack} from "shared/ui/Stack";
 import {TableItem} from "shared/ui/TableItem/TableItem";
-import {Card} from "shared/ui/Card";
-import {Finance} from "entities/Finance";
+import {Finance} from "../../model/types/finance";
+import {VStack} from "shared/ui/Stack";
+import {Skeleton} from "shared/ui/Skeleton/Skeleton";
+import {Text} from "shared/ui/Text/Text";
+import {FinanceTableEmpty} from "../FinanceTableEmpty/FinanceTableEmpty";
 
 interface FinanceTableProps {
     className?: string;
@@ -16,17 +18,10 @@ interface FinanceTableProps {
     onOpenModal?: () => void;
     data?: Finance[];
     totalValue?: number;
+    isLoading?: boolean;
+    error?: string;
+    actions?: ReactNode;
 }
-
-const a = [
-    {text: 'food', value: 30000},
-    {text: 'plate', value: 3000},
-    {text: 'invest', value: 1000},
-    {text: 'casino', value: 500},
-    {text: 'casino', value: 500},
-    {text: 'casino', value: 500},
-    {text: 'casino', value: 500},
-]
 
 export const FinanceTable = memo((props: FinanceTableProps) => {
     const {
@@ -35,24 +30,45 @@ export const FinanceTable = memo((props: FinanceTableProps) => {
         color,
         data,
         title,
+        isLoading,
+        error,
+        actions,
         totalValue
     } = props;
     const {t} = useTranslation();
 
+    let content;
+    if (isLoading) {
+        content = <VStack max gap={'8'}>
+            <Skeleton width={'100%'} height={41} border={'4px'}/>
+            <Skeleton width={'100%'} height={41} border={'4px'}/>
+            <Skeleton width={'100%'} height={41} border={'4px'}/>
+            <Skeleton width={'100%'} height={41} border={'4px'}/>
+            <Skeleton width={'100%'} height={41} border={'4px'}/>
+        </VStack>
+    } else if (error) {
+        content = <Text text={error}/>
+    } else if (data?.length && data.length > 0) {
+        content = <>
+            {data?.map((e, i) => (
+                <TableItem key={i} text={e.name} value={e.amount}/>
+            ))}
+        </>
+    } else {
+        content = <FinanceTableEmpty color={color}/>
+    }
+
     return (
-        <Card max padding={'20'} className={classNames('', {}, [className])}>
-            <Table
-                theme={color}
-                topTitle={title}
-                bottomTitle={'Total Value'}
-                totalValue={totalValue}
-                icon={AddIcon}
-                onOpenModal={onOpenModal}
-            >
-                {data?.map((e, i) => (
-                    <TableItem key={i} text={e.name} value={e.amount}/>
-                ))}
-            </Table>
-        </Card>
+        <Table
+            theme={color}
+            topTitle={title}
+            bottomTitle={'Total Value'}
+            totalValue={totalValue}
+            icon={AddIcon}
+            onOpenModal={onOpenModal}
+            actions={actions}
+        >
+            {content}
+        </Table>
     );
 });

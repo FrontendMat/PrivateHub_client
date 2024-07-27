@@ -5,7 +5,7 @@ import cls from './Flex.module.scss';
 export type FlexJustify = 'start' | 'center' | 'end' | 'between';
 export type FlexAlign = 'start' | 'center' | 'end';
 export type FlexDirection = 'row' | 'column';
-export type FlexGap = '4' | '8' | '10' | '16' | '20' | '32' | '40';
+export type FlexGap = '2' | '4' | '8' | '10' | '16' | '20' | '32' | '40';
 
 const justifyClasses: Record<FlexJustify, string> = {
     start: cls.justifyStart,
@@ -26,6 +26,7 @@ const directionClasses: Record<FlexDirection, string> = {
 };
 
 const gapClasses: Record<FlexGap, string> = {
+    2: cls.gap2,
     4: cls.gap4,
     8: cls.gap8,
     10: cls.gap10,
@@ -46,6 +47,7 @@ export interface FlexProps extends DivProps {
     gap?: FlexGap;
     max?: boolean;
     maxHeight?: boolean;
+    fullScreen?: boolean;
 }
 
 export const Flex = (props: FlexProps) => {
@@ -53,11 +55,12 @@ export const Flex = (props: FlexProps) => {
         className,
         children,
         justify = 'start',
-        align = 'center',
+        align = 'start',
         direction = 'row',
         gap,
         max,
-        maxHeight
+        maxHeight,
+        fullScreen
     } = props;
 
     const classes = [
@@ -71,6 +74,7 @@ export const Flex = (props: FlexProps) => {
     const mods: Mods = {
         [cls.max]: max,
         [cls.maxHeight]: maxHeight,
+        [cls.fullScreen]: fullScreen,
     };
 
     return (

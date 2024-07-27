@@ -3,7 +3,8 @@ import SettingsIcon from 'shared/assets/icons/settings.svg';
 import TasksIcon from 'shared/assets/icons/task.svg';
 import FinanceIcon from 'shared/assets/icons/finance.svg';
 import DashboardIcon from 'shared/assets/icons/dashboard.svg';
-import ProfileIcon from 'shared/assets/icons/profile.svg';
+// import ProfileIcon from 'shared/assets/icons/profile.svg';
+import ProfileIcon from 'shared/assets/icons/user.svg';
 
 export interface SidebarItemsType {
     path: string;
@@ -22,7 +23,7 @@ export const SidebarItemsList: SidebarItemsType[]= [
     },
     {
         path: RoutePath.profile,
-        text: 'My Profile',
+        text: 'Profile',
         Icon: ProfileIcon,
         authOnly: true,
     },

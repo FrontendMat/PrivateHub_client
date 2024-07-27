@@ -1,12 +1,13 @@
-import {Fragment, ReactNode, useDeferredValue} from 'react';
+import {Fragment, ReactNode, useDeferredValue, useMemo} from 'react';
 import { Listbox as HListBox } from '@headlessui/react';
 import cls from "./ListBox.module.scss"
 import {classNames, Mods} from "shared/lib/classNames/classNames";
 
 export interface ListBoxItems {
-    value: string,
-    content: ReactNode,
+    value: string | undefined,
+    content: ReactNode | undefined,
     unavailable?: boolean;
+    id?: string;
 }
 
 export enum ListBoxTheme {
@@ -15,7 +16,7 @@ export enum ListBoxTheme {
 }
 
 export interface ListBoxProps<T extends string> {
-    items: ListBoxItems[];
+    items?: ListBoxItems[];
     className?: string;
     value?: string;
     defaultValue?: string;
@@ -25,9 +26,11 @@ export interface ListBoxProps<T extends string> {
     theme?: ListBoxTheme
 }
 
+const emptyArr: ListBoxItems[] = [{value: 'No Data', content: 'No Data'}]
+
 export function ListBox<T extends string>(props: ListBoxProps<T>) {
     const {
-        items,
+        items= emptyArr,
         value,
         defaultValue,
         onChange,

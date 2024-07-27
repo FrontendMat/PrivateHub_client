@@ -3,6 +3,7 @@ import cls from './TableItem.module.scss';
 import {useTranslation} from "react-i18next";
 import {memo} from "react";
 import {HStack} from "shared/ui/Stack";
+import {Text} from "shared/ui/Text/Text";
 
 interface TableItemProps {
     className?: string;
@@ -25,12 +26,14 @@ export const TableItem = memo((props: TableItemProps) => {
             justify={'between'}
             className={classNames(cls.TableItem, {}, [className])}
         >
-            <div>
-                {text}
-            </div>
-            <div>
-                {value}
-            </div>
+            <Text
+                text={text}
+                theme={'normal'}
+            />
+            <Text
+                text={String(value)}
+                theme={'normal'}
+            />
         </HStack>
     );
 });

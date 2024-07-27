@@ -38,6 +38,10 @@
     flex-direction: column;
 }
 
+.gap2 {
+    gap: 2px;
+}
+
 .gap4 {
     gap: 4px;
 }
@@ -72,4 +76,8 @@
 
 .maxHeight {
     height: 100%;
+}
+
+.fullScreen {
+    height: 100vh;
 }

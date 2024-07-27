@@ -3,9 +3,12 @@ import cls from './Icon.module.scss';
 import type React from "react";
 
 export enum IconSize {
+    XS = 'size-xs',
     S = 'size_small',
     M = 'size_medium',
-    L = 'size_large'
+    L = 'size_large',
+    XL = 'size_xl',
+    VL = 'size_very_large',
 }
 
 export type IconColor = 'primary' | 'secondary' | 'gray' | 'green' | 'yellow' | 'red';

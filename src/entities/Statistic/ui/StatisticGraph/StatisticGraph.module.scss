@@ -1,0 +1,38 @@
+.chart {
+  height: 500px;
+  width: 100%;
+  max-width: 1024px;
+}
+
+.toggleBtn {
+  position: absolute;
+  top: 10px;
+  left: -10px;
+}
+
+.panelCard {
+  width: 36px;
+  position: relative;
+  transition: width 0.3s ease-in-out;
+  white-space: nowrap;
+}
+
+.panel {
+  height: 567px;
+}
+
+.full_w {
+  .panelCard {
+    width: 110px;
+  }
+
+  .chart {
+    width: calc(100% - 5px);
+  }
+}
+
+.collapsed {
+  .chart {
+    max-width: 1214px;
+  }
+}

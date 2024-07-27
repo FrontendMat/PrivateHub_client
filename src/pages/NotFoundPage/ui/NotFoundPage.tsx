@@ -7,6 +7,8 @@ import {Button, ButtonTheme} from "shared/ui/Button/Button";
 import {AppLink} from "shared/ui/AppLink/AppLink";
 import {RoutePath} from "shared/config/routeConfig/routeConfig";
 import {Page} from "shared/ui/Page";
+import {Avatar} from "shared/ui/Avatar/Avatar";
+import {VStack} from "shared/ui/Stack";
 
 interface NotFoundPageProps {
     className?: string
@@ -23,12 +25,19 @@ const NotFoundPage = (props: NotFoundPageProps) => {
                 Svg={NotFoundIcon}
                 className={cls.icon}
             />
-            <Text
-                title={'Page Not Found'}
-                text={"Sorry, we couldn't find this page"}
-                align={TextAlign.CENTER}
-                size={TextSize.L}
-            />
+            <VStack gap={'20'}>
+                <Text
+                    text={'Page Not Found'}
+                    align={'center'}
+                    size={'size_l'}
+                />
+                <Text
+                    text={"Sorry, we couldn't find this page"}
+                    align={'center'}
+                    size={'size_m'}
+                />
+            </VStack>
+
             <AppLink
                 to={RoutePath.main}
                 className={cls.btn}

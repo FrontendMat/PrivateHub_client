@@ -1,7 +1,8 @@
 import { classNames } from 'shared/lib/classNames/classNames';
 import React, {memo} from 'react';
-import { Theme, useTheme } from 'app/providers/ThemeProvider';
 import cls from './ThemeSwitcher.module.scss'
+import {useTheme} from "shared/lib/hooks/useTheme/useTheme";
+import {Theme} from "shared/lib/context/ThemeContext/ThemeContext";
 
 interface ThemeSwitcherProps {
     className?: string

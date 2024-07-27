@@ -1,5 +1,4 @@
 import {classNames} from 'shared/lib/classNames/classNames'
-import {useTheme} from 'app/providers/ThemeProvider'
 import {AppRouter} from 'app/providers/router'
 import {Suspense, useEffect} from 'react'
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
@@ -11,6 +10,7 @@ import {
 } from "entities/User";
 import {Sidebar} from "widgets/Sidebar";
 import {Header} from "widgets/Header";
+import {useTheme} from "shared/lib/hooks/useTheme/useTheme";
 
 const App = () => {
     const {theme} = useTheme();

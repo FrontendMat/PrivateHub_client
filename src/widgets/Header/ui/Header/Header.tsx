@@ -1,11 +1,16 @@
 import {classNames} from "shared/lib/classNames/classNames";
 import cls from './Header.module.scss';
-import {memo, useCallback} from "react";
-import {ThemeSwitcher} from "features/ThemeSwitcher/ui/ThemeSwitcher";
-import {Button, ButtonTheme} from "shared/ui/Button/Button";
-import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
-import {logoutAuth} from "entities/User";
-import {HeaderLogo} from "../HeaderLogo/HeaderLogo";
+import {memo} from "react";
+import {IconSize} from "shared/ui/Icon/Icon";
+import {Logo} from "shared/ui/Logo/Logo";
+import {HStack, VStack} from "shared/ui/Stack";
+import {Card} from "shared/ui/Card";
+import Ph from "shared/assets/photo.jpeg";
+import {Avatar} from "shared/ui/Avatar/Avatar";
+import {Text} from "shared/ui/Text/Text";
+import {useSelector} from "react-redux";
+import {getUserAuthData} from "entities/User";
+import {ThemeSwitcher} from "features/ThemeSwitcher";
 
 
 interface HeaderProps {
@@ -16,26 +21,35 @@ export const Header = memo((props: HeaderProps) => {
     const {
         className,
     } = props;
-    const dispatch = useAppDispatch();
-
-    const onLogOut = useCallback(() => {
-        dispatch(logoutAuth());
-    }, [dispatch])
+    const userData = useSelector(getUserAuthData)
 
     return (
-        <div className={classNames(cls.Header, {}, [className])}>
-            <HeaderLogo/>
-            <div className={cls.buttons}>
-                <div className={cls.themeBtn}>
-                    <ThemeSwitcher/>
-                </div>
-                <Button
-                    theme={ButtonTheme.BACKGROUND}
-                    onClick={onLogOut}
-                >
-                    Log out
-                </Button>
-            </div>
-        </div>
+        <Card border={'full_bottom'} padding={'16'} max className={classNames(cls.Header, {}, [className])}>
+            <HStack align={'center'} justify={'between'}>
+                <Logo
+                    titleOnly
+                    type={'horizontal'}
+                    iconSize={IconSize.L}
+                />
+                <HStack gap={'10'}>
+                    <VStack gap={'2'} justify={'between'} align={'end'}>
+                        <Text
+                            size={'size_l'}
+                            text={userData?.username + ' ' + userData?.userlastname}
+                            theme={'normal'}
+                            bold
+                        />
+                        <Text
+                            size={'size_m'}
+                            text={'Admin'}
+                        />
+                    </VStack>
+                    <Avatar
+                        src={Ph}
+                        size={'medium'}
+                    />
+                </HStack>
+            </HStack>
+        </Card>
     );
 });
