@@ -4,14 +4,14 @@ import {USER_LOCALSTORAGE_KEY} from "shared/consts/localstorage";
 import {ThunkConfig} from "app/providers/StoreProvider";
 import {AuthResponse} from "entities/User";
 
-export interface LoginByUserNameProps {
+export interface LoginByEmailPropsProps {
     email: string;
     password: string
 }
 
 export const loginByEmail = createAsyncThunk<
     AuthResponse,
-    LoginByUserNameProps,
+    LoginByEmailPropsProps,
     ThunkConfig<string>
 >(
     'login/loginByEmail',

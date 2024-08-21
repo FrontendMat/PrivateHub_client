@@ -20,7 +20,6 @@ $api.interceptors.response.use((config) => {
             originalRequest._isRetry = true
             const response = await axios.get(`${__API__}/refresh`, {withCredentials: true})
             localStorage.setItem(USER_LOCALSTORAGE_KEY, response.data.accessToken)
-            console.log(response.data.accessToken)
             return $api.request(originalRequest)
         } catch (e) {
             console.log('Не авторизований', e)

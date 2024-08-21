@@ -19,25 +19,25 @@ export const AuthTextBlock = memo((props: AuthTextBlockProps) => {
         onClick,
         isNew
     } = props;
-    const {t} = useTranslation();
+    const {t} = useTranslation('auth');
 
     let content;
     if (!isNew) {
         content =
             <>
                 <Text
-                    text={'Welcome Back!'}
+                    text={t('Welcome Back!')}
                     theme={'secondary'}
                     size={'size_xl'}
                     bold
                 />
                 <Text
                     theme={'secondary'}
-                    text={'Enter your personal details to use all of site features'}
+                    text={t('Enter your personal details to use all of site features')}
                 />
                 <Text
                     theme={'secondary'}
-                    text={'or'}
+                    text={t('or')}
                     bold
                 />
                 <Button
@@ -45,25 +45,25 @@ export const AuthTextBlock = memo((props: AuthTextBlockProps) => {
                     theme={ButtonTheme.SECONDARY}
                     max
                 >
-                    Sign Up
+                    {t('Sign Up')}
                 </Button>
             </>
     } else {
         content =
             <>
                 <Text
-                    text={'Hello, Friend!'}
+                    text={t('Hello, Friend!')}
                     theme={'secondary'}
                     size={'size_xl'}
                     bold
                 />
                 <Text
                     theme={'secondary'}
-                    text={'Register with your personal details to use all of site features'}
+                    text={t('Register with your personal details to use all of site features')}
                 />
                 <Text
                     theme={'secondary'}
-                    text={'or'}
+                    text={t('or')}
                     bold
                 />
                 <Button
@@ -71,7 +71,7 @@ export const AuthTextBlock = memo((props: AuthTextBlockProps) => {
                     theme={ButtonTheme.SECONDARY}
                     max
                 >
-                    Sign In
+                    {t('Sign In')}
                 </Button>
             </>
     }

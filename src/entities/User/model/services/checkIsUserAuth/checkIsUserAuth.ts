@@ -22,8 +22,8 @@ export const checkIsUserAuth = createAsyncThunk<
             localStorage.setItem(USER_LOCALSTORAGE_KEY, response.data.accessToken);
             dispatch(userActions.setAuthData(response.data));
             return response.data;
-        } catch (e) {
-            return rejectWithValue(String(e));
+        } catch (e: any) {
+            return rejectWithValue(String(e.response.data.message));
         }
     },
 );

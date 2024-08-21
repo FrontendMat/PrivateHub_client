@@ -22,8 +22,8 @@ export const logoutAuth = createAsyncThunk<
             dispatch(userActions.setAuthData({} as AuthResponse));
 
             return response.data;
-        } catch (e) {
-            return rejectWithValue(String(e));
+        } catch (e: any) {
+            return rejectWithValue(String(e.response.data.message));
         }
     },
 );

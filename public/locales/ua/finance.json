@@ -1,0 +1,22 @@
+{
+  "+ Add Category": "+ Створити категорію",
+  "+ Add Value": "+ Додати суму",
+  "Total Value": "Загальна сума",
+  "Empty Table": "Пуста таблиця",
+  "Incomes": "Доходи",
+  "Expenses": "Витрати",
+  "Statistic": "Статистика",
+  "Category created": "Категорію додано",
+  "Category": "Категорія",
+  "Enter category name": "Введіть назву категорії",
+  "Regular category": "Регулярна категорія",
+  "Clear": "Очистити",
+  "Create": "Створити",
+  "Successful transaction": "Успішно додано",
+  "Value": "Сума",
+  "Enter value": "Введіть суму",
+  "Select Category": "Вибрати категорію",
+  "Type": "Тип",
+  "Date": "Дата",
+  "Summary": "Сумарно"
+}

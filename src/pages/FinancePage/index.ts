@@ -1,1 +1,1 @@
-export {FinancePageAsync as FinancePage} from './ui/FinancePage.async'
+export {FinancePageAsync as FinancePage} from './ui/FinancePage/FinancePage.async'

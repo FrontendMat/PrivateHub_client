@@ -39,7 +39,7 @@ export const Statistic = memo((props: StatisticProps) => {
     let content;
     if (isLoading) {
         content = (
-            <Card theme={'inverted_bg'} padding={'20'} max>
+            <Card theme={'inverted_bg'} padding={'20'} width={'max'}>
                 <Skeleton height={487} width={'100%'} border={'12px'}/>
             </Card>
         )

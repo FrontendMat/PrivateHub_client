@@ -1,19 +1,22 @@
 import {useTranslation} from "react-i18next";
-import {memo, useCallback} from "react";
+import React, {memo, ReactNode, useCallback} from "react";
 import {Button, ButtonTheme} from "shared/ui/Button/Button";
+import {Icon, IconSize} from "shared/ui/Icon/Icon";
+import {HStack} from "shared/ui/Stack";
+import {blockSwitcherNav} from "shared/types/blockSwitcher";
 
 interface BlockSwitcherNavProps {
     id: number;
     currentId: number;
     className?: string;
-    text: string;
+    item: blockSwitcherNav
     switchBlock: (id: number) => void;
 }
 
 export const BlockSwitcherNav = memo((props: BlockSwitcherNavProps) => {
     const {
         className,
-        text,
+        item,
         id,
         currentId,
         switchBlock
@@ -30,7 +33,16 @@ export const BlockSwitcherNav = memo((props: BlockSwitcherNavProps) => {
             onClick={onClick}
             theme={isActive ? ButtonTheme.BACKGROUND : ButtonTheme.BACKGROUND_INVERTED}
         >
-            {text}
+            <HStack gap={'10'} align={'center'}>
+                {item.icon &&
+                    <Icon
+                        Svg={item.icon}
+                        size={IconSize.XS}
+                        color={isActive ? 'secondary' : 'gray'}
+                    />
+                }
+                {item.text}
+            </HStack>
         </Button>
     );
 });

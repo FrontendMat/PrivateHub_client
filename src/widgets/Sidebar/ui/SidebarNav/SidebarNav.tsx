@@ -1,8 +1,9 @@
 import {classNames} from "shared/lib/classNames/classNames";
-import {memo} from "react";
-import {SidebarItemsList} from "widgets/Sidebar/model/items";
-import {SidebarItem} from "widgets/Sidebar/ui/SidebarItem/SidebarItem";
+import {memo, useMemo} from "react";
+import {SidebarItem} from "../SidebarItem/SidebarItem";
 import {VStack} from "shared/ui/Stack";
+import {useSelector} from "react-redux";
+import {getSidebarItems} from "../../model/selectors/getSidebarItems";
 
 interface SidebarNavProps {
     className?: string;
@@ -14,16 +15,19 @@ export const SidebarNav = memo((props: SidebarNavProps) => {
         className,
         collapsed
     } = props;
+    const sidebarItemsList = useSelector(getSidebarItems);
+
+    const itemsList = useMemo(() => sidebarItemsList.map((item) => (
+        <SidebarItem
+            item={item}
+            collapsed={collapsed}
+            key={item.path}
+        />
+    )), [collapsed, sidebarItemsList]);
 
     return (
         <VStack gap={'16'} max className={classNames('', {}, [className])}>
-            {SidebarItemsList.map((item) => (
-                <SidebarItem
-                    collapsed={collapsed}
-                    key={item.path}
-                    item={item}
-                />
-            ))}
+            {itemsList}
         </VStack>
     );
 });

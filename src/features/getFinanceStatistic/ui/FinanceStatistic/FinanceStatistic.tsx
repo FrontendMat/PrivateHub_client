@@ -30,7 +30,7 @@ export const FinanceStatistic = memo((props: FinanceStatisticProps) => {
     const {
         className,
     } = props;
-    const {t} = useTranslation();
+    const {t} = useTranslation('finance');
     const dispatch = useAppDispatch();
     const incomesData = useSelector(getFinanceStatisticIncomesData);
     const expensesData = useSelector(getFinanceStatisticExpensesData);
@@ -53,9 +53,9 @@ export const FinanceStatistic = memo((props: FinanceStatisticProps) => {
                     data={incomesData}
                     totalValue={incomesValue}
                     keyTitle={'date'}
-                    mainTitle={'Date'}
-                    secondaryTitle={'Value'}
-                    title={'Incomes:'}
+                    mainTitle={t('Date')}
+                    secondaryTitle={t('Value')}
+                    title={t('Incomes') + ':'}
                     color={'green'}
                     error={error}
                 />
@@ -64,9 +64,9 @@ export const FinanceStatistic = memo((props: FinanceStatisticProps) => {
                     data={expensesData}
                     totalValue={expensesValue}
                     keyTitle={'date'}
-                    mainTitle={'Date'}
-                    secondaryTitle={'Value'}
-                    title={'Expenses:'}
+                    mainTitle={t('Date')}
+                    secondaryTitle={t('Value')}
+                    title={t('Expenses') + ':'}
                     color={'red'}
                     error={error}
                 />
@@ -75,9 +75,9 @@ export const FinanceStatistic = memo((props: FinanceStatisticProps) => {
                     data={sumData}
                     totalValue={totalValue}
                     keyTitle={'date'}
-                    mainTitle={'Date'}
-                    secondaryTitle={'Value'}
-                    title={'Summary:'}
+                    mainTitle={t('Date')}
+                    secondaryTitle={t('Value')}
+                    title={t('Summary') + ':'}
                     color={'primary'}
                     error={error}
                 />

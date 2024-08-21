@@ -5,10 +5,11 @@ import {BlockSwitcherNav} from "../BlockSwitcherNav/BlockSwitcherNav";
 import {BlockSwitcherData} from "../BlockSwitcherData/BlockSwitcherData";
 import {HStack, VStack} from "shared/ui/Stack";
 import {Card} from "shared/ui/Card";
+import {blockSwitcherNav} from "shared/types/blockSwitcher";
 
 interface BlockSwitcherProps {
     className?: string;
-    tabsNav: string[];
+    tabsNav: blockSwitcherNav[];
     tabsItems: ReactNode[];
 
 }
@@ -28,7 +29,10 @@ export const BlockSwitcher = memo((props: BlockSwitcherProps) => {
 
     return (
         <VStack max gap={'20'} className={classNames(cls.BlockSwitcher, {}, [className])}>
-            <Card max padding={'20'}>
+            <Card
+                width={'max'}
+                padding={'20'}
+            >
                 <HStack
                     align={'center'}
                     gap={'16'}
@@ -38,7 +42,7 @@ export const BlockSwitcher = memo((props: BlockSwitcherProps) => {
                             key={i}
                             id={i + 1}
                             currentId={isActive}
-                            text={e}
+                            item={e}
                             switchBlock={switchBlock}
                         />
                     ))}

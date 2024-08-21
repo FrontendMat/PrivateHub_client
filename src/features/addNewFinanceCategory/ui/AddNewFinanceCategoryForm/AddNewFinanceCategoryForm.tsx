@@ -3,7 +3,7 @@ import {useTranslation} from "react-i18next";
 import cls from './AddNewFinanceCategoryForm.module.scss';
 import {memo, useCallback, useState} from "react";
 import {HStack, VStack} from "shared/ui/Stack";
-import {Button, ButtonTheme} from "shared/ui/Button/Button";
+import {Button, ButtonSize, ButtonTheme} from "shared/ui/Button/Button";
 import {useSelector} from "react-redux";
 import {
     getFinCategoryData,
@@ -20,15 +20,18 @@ import {Text} from "shared/ui/Text/Text";
 import {Card} from "shared/ui/Card";
 import {Icon, IconSize} from "shared/ui/Icon/Icon";
 import PenIcon from "shared/assets/icons/pen.svg";
-import PigIcon from "shared/assets/icons/money-pig.svg";
+import CloseIcon from "shared/assets/icons/close.svg";
 import {CheckBox} from "shared/ui/CheckBox/CheckBox";
 import {Form} from "shared/ui/Form/Form";
+import {Alert} from "shared/ui/Alert/Alert";
 
 interface AddNewFinanceCategoryFormProps {
     className?: string;
     onModalClose: () => void;
     financeType: FinanceType;
     title: string;
+    onSuccess: () => void;
+    setAlertText: (text: string) => void;
 }
 
 const reducers: ReducersList = {
@@ -40,48 +43,64 @@ const AddNewFinanceCategoryForm = memo((props: AddNewFinanceCategoryFormProps) =
         className,
         financeType,
         onModalClose,
-        title
+        onSuccess,
+        setAlertText,
     } = props;
-    const {t} = useTranslation();
-    const [isSuccess, setIsSuccess] = useState(false);
+    const {t} = useTranslation('finance');
     const finance = useSelector(getFinCategoryData);
     const isLoading = useSelector(getFinCategoryIsLoading);
     const error = useSelector(getFinCategoryError);
     const dispatch = useAppDispatch();
 
-    const onSuccess = useCallback(() => {
-        setIsSuccess(true)
-    }, [])
-
-    const isIncomes = financeType === 'Incomes';
-
     const setName = useCallback((value: string) => {
         dispatch(addFinanceCategoryActions.addFinance({name: value}))
-    }, [dispatch])
+    }, [dispatch]);
 
     const setIsRegular = useCallback(() => {
         dispatch(addFinanceCategoryActions.addFinance({isRegular: !finance?.isRegular}))
-    }, [dispatch, finance?.isRegular])
+    }, [dispatch, finance?.isRegular]);
+
+    const clearForm = useCallback(() => {
+        dispatch(addFinanceCategoryActions.clearForm())
+    }, [dispatch]);
 
     const createCategory = useCallback(async () => {
         const result = await dispatch(addFinanceCategory(financeType))
         if (result.meta.requestStatus === 'fulfilled') {
             onModalClose();
+            setAlertText(t('Category created'))
             onSuccess();
         }
-    }, [dispatch, onSuccess, onModalClose, financeType])
+    }, [t, setAlertText, dispatch, onSuccess, onModalClose, financeType]);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
+            {error &&
+                <Alert
+                    color={'error'}
+                    text={t(error)}
+                />
+            }
             <Form>
                 <VStack gap={'20'} className={classNames('', {}, [className])}>
                     <HStack max className={cls.title} align={'center'} justify={'between'}>
                         <Text
-                            text={`Category`}
+                            text={t(`Category`)}
                             theme={'primary'}
                             size={'size_l'}
                         />
-                        <Icon size={IconSize.M} Svg={PigIcon} color={isIncomes ? 'green' : 'red'} hover={isIncomes ? 'green' : 'red'}/>
+                        <Button
+                            square
+                            onClick={onModalClose}
+                            theme={ButtonTheme.CLEAR}
+                        >
+                            <Icon
+                                Svg={CloseIcon}
+                                color={'gray'}
+                                size={IconSize.S}
+                                pointer
+                            />
+                        </Button>
                     </HStack>
                     <HStack max align={'start'}>
                         <Card
@@ -101,7 +120,7 @@ const AddNewFinanceCategoryForm = memo((props: AddNewFinanceCategoryFormProps) =
                             value={finance?.name}
                             required
                             onChange={setName}
-                            placeholder={'Enter category name'}
+                            placeholder={t('Enter category name')}
                         />
                     </HStack>
                     <HStack align={'center'} gap={'10'}>
@@ -110,7 +129,7 @@ const AddNewFinanceCategoryForm = memo((props: AddNewFinanceCategoryFormProps) =
                             onChange={setIsRegular}
                         />
                         <Text
-                            text={'Save as a Regular category'}
+                            text={t('Regular category')}
                             theme={'gray'}
                             size={'size_m'}
                         />
@@ -121,10 +140,10 @@ const AddNewFinanceCategoryForm = memo((props: AddNewFinanceCategoryFormProps) =
                         justify={'between'}
                     >
                         <Button
-                            onClick={onModalClose}
+                            onClick={clearForm}
                             theme={ButtonTheme.OUTLINE_RED}
                         >
-                            Cancel
+                            {t('Clear')}
                         </Button>
                         <Button
                             type={'submit'}
@@ -132,7 +151,7 @@ const AddNewFinanceCategoryForm = memo((props: AddNewFinanceCategoryFormProps) =
                             theme={ButtonTheme.BACKGROUND}
                             disabled={isLoading}
                         >
-                            Create
+                            {t('Create')}
                         </Button>
                     </HStack>
                 </VStack>

@@ -18,6 +18,9 @@ export const addFinanceCategorySlice = createSlice({
                 ...action.payload
             };
         },
+        clearForm: (state) => {
+            state.data = undefined
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -30,6 +33,7 @@ export const addFinanceCategorySlice = createSlice({
             })
             .addCase(addFinanceCategory.rejected, (state, action) => {
                 state.isLoading = false;
+                state.error = action.payload;
             })
     },
 })

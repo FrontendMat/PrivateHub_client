@@ -31,7 +31,7 @@ export const FinanceResultCard = memo((props: StatisticCardProps) => {
         value= 0,
         icon
     } = props;
-    const {t} = useTranslation();
+    const {t} = useTranslation('main');
 
     return (
         <AppLink
@@ -40,7 +40,7 @@ export const FinanceResultCard = memo((props: StatisticCardProps) => {
             fullWidth
         >
             <Card
-                max
+                width={'max'}
                 padding={'20'}
                 theme={'inverted_bg'}
                 className={classNames('', {}, [className])}

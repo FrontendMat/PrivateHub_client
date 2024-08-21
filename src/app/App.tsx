@@ -17,12 +17,13 @@ const App = () => {
     const dispatch = useAppDispatch();
     const inited = useSelector(getUserInited);
     const isAuth = useSelector(getUserAuthData);
+    const isNewUser = isAuth && !isAuth.isActivated;
 
     useEffect(() => {
         dispatch(checkIsUserAuth())
     }, [dispatch]);
 
-    if (!isAuth) {
+    if (!isAuth || isNewUser) {
         return (
             <div className={classNames('app', {}, [theme])}>
                 <Suspense fallback=''>

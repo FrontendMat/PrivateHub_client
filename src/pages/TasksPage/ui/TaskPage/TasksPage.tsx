@@ -1,5 +1,6 @@
 import {memo} from "react";
 import {Page} from "shared/ui/Page/ui/Page";
+import {PageInDev} from "widgets/PageInDev/PageInDev";
 
 interface TaskPageProps {
     className?: string
@@ -12,7 +13,7 @@ const TasksPage = memo((props: TaskPageProps) => {
     
     return (
         <Page>
-            Task Page
+            <PageInDev/>
         </Page>
     );
 });

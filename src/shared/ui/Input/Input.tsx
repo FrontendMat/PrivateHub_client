@@ -7,6 +7,7 @@ type HTMLInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'value' | 'onC
 export enum InputTheme {
     OUTLINED = 'outlined',
     CLEAR = 'clear',
+    ERROR = 'error',
     BACKGROUND = 'background',
     WITH_ICON = 'with_icon'
 }

@@ -5,7 +5,7 @@ import {UserSchema} from "entities/User";
 import {FinanceSchema} from "entities/Finance";
 import {LoginSchema} from "features/loginByUserEmail";
 import {FinanceResultSchema} from "features/getFinanceResult";
-import {RegistrationSchema} from "features/registerByUsername";
+import {RegistrationSchema} from "features/registerByUserEmail";
 import {FinanceStatisticSchema} from "features/getFinanceStatistic";
 import {AddFinanceCategorySchema} from "features/addNewFinanceCategory";
 import {AddNewFinanceTransactionSchema} from "features/addNewFinanceTransaction";

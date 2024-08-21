@@ -59,38 +59,38 @@ export const PageError = memo((props: PageErrorProps) => {
             </VStack>
         );
     }
+    // <VStack
+    //     max
+    //     maxHeight
+    //     justify={'center'}
+    //     gap={'20'}
+    //     className={classNames('', {}, [className])}
+    // >
+    //     <VStack
+    //         max
+    //         gap={'10'}
+    //         align={'center'}
+    //     >
+    //         <Icon
+    //             Svg={ErrorIcon}
+    //             size={IconSize.L}
+    //         />
+    //         <Text
+    //             text={title}
+    //             theme={'red'}
+    //             size={'size_l'}
+    //         />
+    //         <Text
+    //             text={text}
+    //             theme={'red'}
+    //             size={'size_m'}
+    //         />
+    //     </VStack>
+    // </VStack>
 
     return (
-        // <VStack
-        //     max
-        //     maxHeight
-        //     justify={'center'}
-        //     gap={'20'}
-        //     className={classNames('', {}, [className])}
-        // >
-        //     <VStack 
-        //         max 
-        //         gap={'10'} 
-        //         align={'center'}
-        //     >
-        //         <Icon
-        //             Svg={ErrorIcon}
-        //             size={IconSize.L}
-        //         />
-        //         <Text
-        //             text={title}
-        //             theme={'red'}
-        //             size={'size_l'}
-        //         />
-        //         <Text
-        //             text={text}
-        //             theme={'red'}
-        //             size={'size_m'}
-        //         />
-        //     </VStack>
-        // </VStack>
-        <Card max padding={'20'}>
-            <VStack gap={'10'} align={'center'}>
+        <Card width={'max'} padding={'20'} maxHeight>
+            <VStack gap={'10'} align={'center'} maxHeight justify={'center'}>
                 <Icon
                     Svg={ErrorIcon}
                     size={IconSize.XL}

@@ -1,5 +1,6 @@
 import {classNames, Mods} from "shared/lib/classNames/classNames";
 import cls from './Text.module.scss'
+import {memo} from "react";
 
 export type TextSize = 'size_s' | 'size_m' | 'size_l' | 'size_lm' | 'size_xl' ;
 
@@ -41,7 +42,7 @@ const themeClasses: Record<TextColors, string> = {
     normal: cls.normal,
 }
 
-export const Text = (props: TextProps) => {
+export const Text = memo((props: TextProps) => {
     const {
         className,
         text= '',
@@ -69,4 +70,4 @@ export const Text = (props: TextProps) => {
             {text}
         </p>
     );
-};
+});

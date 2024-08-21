@@ -11,11 +11,12 @@ import {getLoginIsLoading} from "../../model/selectors/getLoginIsLoading/getLogi
 import {getLoginError} from "../../model/selectors/getLoginError/getLoginError";
 import {getLoginPassword} from "../../model/selectors/getLoginPassword/getLoginPassword";
 import {getLoginEmail} from "../../model/selectors/getLoginEmail/getLoginEmail";
-import {useCallback} from "react";
+import {memo, useCallback, useState} from "react";
 import {loginByEmail} from "../../model/services/loginByEmail/loginByEmail";
 import {Alert, AlertTheme} from "shared/ui/Alert/Alert";
 import {HStack, VStack} from "shared/ui/Stack";
 import {Form} from "shared/ui/Form/Form";
+import {useTranslation} from "react-i18next";
 
 interface LoginFormProps {
     className?: string
@@ -25,18 +26,19 @@ const initialReducer: ReducersList = {
     loginForm: loginReducer
 }
 
-export const LoginForm = (props: LoginFormProps) => {
+export const LoginForm = memo((props: LoginFormProps) => {
     const {
         className,
     } = props;
+    const {t} = useTranslation('auth');
     const dispatch = useAppDispatch();
     const isLoading = useSelector(getLoginIsLoading);
     const error = useSelector(getLoginError);
     const password = useSelector(getLoginPassword);
     const email = useSelector(getLoginEmail);
 
-    const onChangeUsername = useCallback((value: string) => {
-        dispatch(loginActions.setUsername(value))
+    const onChangeEmail = useCallback((value: string) => {
+        dispatch(loginActions.setEmail(value))
     }, [dispatch])
 
     const onChangePassword = useCallback((value: string) => {
@@ -45,14 +47,14 @@ export const LoginForm = (props: LoginFormProps) => {
 
     const onLoginClick = useCallback(async () => {
         const result = await dispatch(loginByEmail({email, password}));
-    }, [dispatch, email, password, ])
+    }, [dispatch, email, password])
 
     return (
         <DynamicModuleLoader
             reducers={initialReducer}
             removeAfterUnmount
         >
-            {error && <Alert color={AlertTheme.ERROR} text={error}/>}
+            {error && <Alert color={'error'} text={error}/>}
             <Form>
                 <VStack
                     align={'start'}
@@ -64,13 +66,13 @@ export const LoginForm = (props: LoginFormProps) => {
                 >
                     <VStack max gap={'2'} justify={'center'} align={'center'}>
                         <Text
-                            text={'Sign In'}
+                            text={t('Sign In')}
                             theme={'primary'}
                             size={'size_xl'}
                             bold
                         />
                         <Text
-                            text={'Please sign in to access your account'}
+                            text={t('Please sign in to access your account')}
                             theme={'gray'}
                             size={'size_m'}
                         />
@@ -81,13 +83,13 @@ export const LoginForm = (props: LoginFormProps) => {
                                 placeholder={'Email'}
                                 value={email}
                                 type={'email'}
-                                onChange={onChangeUsername}
+                                onChange={onChangeEmail}
                                 theme={InputTheme.BACKGROUND}
                             />
                         </HStack>
                         <HStack align={'center'} max>
                             <Input
-                                placeholder={'Password'}
+                                placeholder={t('Password')}
                                 value={password}
                                 onChange={onChangePassword}
                                 theme={InputTheme.BACKGROUND}
@@ -104,10 +106,10 @@ export const LoginForm = (props: LoginFormProps) => {
                         disabled={isLoading}
                         type={'submit'}
                     >
-                        Sign In
+                        {t('Sign In')}
                     </Button>
                 </VStack>
             </Form>
         </DynamicModuleLoader>
     );
-};
+});

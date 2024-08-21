@@ -1,6 +1,6 @@
 import {classNames, Mods} from "shared/lib/classNames/classNames";
 import cls from './Icon.module.scss';
-import type React from "react";
+import {SVGProps, VFC} from "react";
 
 export enum IconSize {
     XS = 'size-xs',
@@ -15,20 +15,11 @@ export type IconColor = 'primary' | 'secondary' | 'gray' | 'green' | 'yellow' | 
 
 interface IconProps {
     className?: string;
-    Svg: React.VFC<React.SVGProps<SVGSVGElement>>;
+    Svg: VFC<SVGProps<SVGSVGElement>>;
     size?: IconSize;
     color?: IconColor;
     hover?: IconColor;
     pointer?: boolean
-}
-
-const colorHoverClasses: Record<IconColor, string> = {
-    primary: cls.primary_hover,
-    secondary: cls.secondary_hover,
-    gray: cls.gray_hover,
-    green: cls.green_hover,
-    yellow: cls.yellow_hover,
-    red: cls.red_hover,
 }
 
 const colorClasses: Record<IconColor, string> = {
@@ -46,7 +37,6 @@ export const Icon = (props: IconProps) => {
         Svg,
         size = IconSize.S,
         color = 'primary',
-        hover = 'primary',
         pointer
     } = props;
 
@@ -54,7 +44,6 @@ export const Icon = (props: IconProps) => {
         className,
         cls[size],
         colorClasses[color],
-        colorHoverClasses[hover]
     ]
 
     const mods: Mods = {

@@ -17,7 +17,7 @@ export const FinanceTableEmpty = memo((props: FinanceTableEmptyProps) => {
         className,
         color
     } = props;
-    const {t} = useTranslation();
+    const {t} = useTranslation('finance');
 
     return (
         <VStack
@@ -34,7 +34,7 @@ export const FinanceTableEmpty = memo((props: FinanceTableEmptyProps) => {
                 hover={color}
             />
             <Text
-                text={'Empty Table...'}
+                text={t('Empty Table')}
             />
         </VStack>
     );

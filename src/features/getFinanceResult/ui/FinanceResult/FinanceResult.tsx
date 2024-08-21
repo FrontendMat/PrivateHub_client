@@ -29,7 +29,7 @@ export const FinanceResult = memo((props: FinanceResultProps) => {
     const {
         className,
     } = props;
-    const {t} = useTranslation();
+    const {t} = useTranslation('dashboard');
     const dispatch = useAppDispatch();
     const data = useSelector(getFinanceResultData);
     const isLoading = useSelector(getFinanceResultIsLoading);
@@ -46,7 +46,7 @@ export const FinanceResult = memo((props: FinanceResultProps) => {
                     isLoading={isLoading}
                     pathLink={RoutePath.finance}
                     icon={MoneyIcon}
-                    title={'Incomes:'}
+                    title={t('Incomes')}
                     value={data?.incomes}
                     color={'green'}
                     mark={'+ '}
@@ -55,7 +55,7 @@ export const FinanceResult = memo((props: FinanceResultProps) => {
                     isLoading={isLoading}
                     pathLink={RoutePath.finance}
                     icon={MoneyIcon}
-                    title={'Expenses:'}
+                    title={t('Expenses')}
                     value={data?.expenses}
                     color={'red'}
                     mark={'- '}
@@ -64,7 +64,7 @@ export const FinanceResult = memo((props: FinanceResultProps) => {
                     isLoading={isLoading}
                     pathLink={RoutePath.finance}
                     icon={BalanceIcon}
-                    title={'Summary:'}
+                    title={t('Summary')}
                     value={Math.abs(data?.summary || 0)}
                     color={'primary'}
                     mark={data?.mark || ''}
@@ -72,9 +72,9 @@ export const FinanceResult = memo((props: FinanceResultProps) => {
                 <BadgeNew color={'red'}>
                     <FinanceResultCard
                         isLoading={isLoading}
-                        pathLink={RoutePath.finance}
+                        pathLink={RoutePath.bank}
                         icon={BankIcon}
-                        title={'My Bank:'}
+                        title={t('My Bank')}
                         value={92000}
                         color={'yellow'}
                     />

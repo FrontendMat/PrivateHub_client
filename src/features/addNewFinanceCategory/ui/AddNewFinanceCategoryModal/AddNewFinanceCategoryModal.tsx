@@ -10,7 +10,9 @@ interface AddNewFinanceCategoryModalProps {
     isOpen?: boolean;
     onClose: () => void;
     financeType: FinanceType;
-    title: string
+    title: string;
+    onSuccess: () => void;
+    setAlertText: (alertText: string) => void;
 }
 
 export const AddNewFinanceCategoryModal = memo((props: AddNewFinanceCategoryModalProps) => {
@@ -20,6 +22,8 @@ export const AddNewFinanceCategoryModal = memo((props: AddNewFinanceCategoryModa
         financeType,
         title,
         onClose,
+        onSuccess,
+        setAlertText
     } = props;
 
     return (
@@ -31,9 +35,11 @@ export const AddNewFinanceCategoryModal = memo((props: AddNewFinanceCategoryModa
         >
             <Suspense fallback={<Loader/>}>
                 <AddNewFinanceCategoryFormAsync
+                    setAlertText={setAlertText}
                     onModalClose={onClose}
                     financeType={financeType}
                     title={title}
+                    onSuccess={onSuccess}
                 />
             </Suspense>
         </Modal>

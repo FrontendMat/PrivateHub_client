@@ -17,7 +17,7 @@ export const FinanceActionPanel = memo((props: PanelProps) => {
         onOpenModal,
         onOpenEditModal,
     } = props;
-    const {t} = useTranslation();
+    const {t} = useTranslation('finance');
 
     return (
         <HStack max gap={'20'} align={'center'} justify={'between'}>
@@ -25,13 +25,13 @@ export const FinanceActionPanel = memo((props: PanelProps) => {
                 theme={ButtonTheme.OUTLINE}
                 onClick={onOpenModal}
             >
-                + Add Category
+                {t('+ Add Category')}
             </Button>
             <Button
                 theme={ButtonTheme.BACKGROUND}
                 onClick={onOpenEditModal}
             >
-                + Add Value
+                {t('+ Add Value')}
             </Button>
         </HStack>
 

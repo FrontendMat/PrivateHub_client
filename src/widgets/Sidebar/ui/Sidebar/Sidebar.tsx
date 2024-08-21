@@ -8,6 +8,7 @@ import ArrowRightIcon from "shared/assets/icons/arrow-right.svg";
 import ArrowLeftIcon from "shared/assets/icons/arrow-left.svg";
 import {Button, ButtonTheme} from "shared/ui/Button/Button";
 import {useCollapsed} from "shared/lib/hooks/useCollapsed/useCollapsed";
+import {SidebarFooter} from "widgets/Sidebar/ui/SidebarFooter/SidebarFooter";
 
 
 interface SidebarProps {
@@ -25,7 +26,11 @@ export const Sidebar = memo((props: SidebarProps) => {
     }
 
     return (
-        <Card padding={'20'} border={'full_right'} className={classNames(cls.Sidebar, mods, [className])}>
+        <Card
+            padding={'20'}
+            border={'full_right'}
+            className={classNames(cls.Sidebar, mods, [className])}
+        >
             <Button
                 className={cls.icon}
                 theme={ButtonTheme.CLEAR}
@@ -40,6 +45,7 @@ export const Sidebar = memo((props: SidebarProps) => {
             <SidebarNav
                 collapsed={collapsed}
             />
+            <SidebarFooter/>
         </Card>
     );
 });

@@ -44,3 +44,11 @@
 .max {
     width: 100%;
 }
+
+.error {
+    border-color: var(--red-color);
+
+    &:hover {
+        border-color: var(--red-color);
+    }
+}

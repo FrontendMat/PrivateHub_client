@@ -35,7 +35,7 @@ export const FinanceTable = memo((props: FinanceTableProps) => {
         actions,
         totalValue
     } = props;
-    const {t} = useTranslation();
+    const {t} = useTranslation('finance');
 
     let content;
     if (isLoading) {
@@ -51,7 +51,11 @@ export const FinanceTable = memo((props: FinanceTableProps) => {
     } else if (data?.length && data.length > 0) {
         content = <>
             {data?.map((e, i) => (
-                <TableItem key={i} text={e.name} value={e.amount}/>
+                <TableItem
+                    key={i}
+                    text={e.name}
+                    value={e.amount}
+                />
             ))}
         </>
     } else {
@@ -62,7 +66,7 @@ export const FinanceTable = memo((props: FinanceTableProps) => {
         <Table
             theme={color}
             topTitle={title}
-            bottomTitle={'Total Value'}
+            bottomTitle={t('Total Value')}
             totalValue={totalValue}
             icon={AddIcon}
             onOpenModal={onOpenModal}

@@ -2,6 +2,7 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {AddNewFinanceTransactionSchema} from "../types/addNewFinanceTransactionSchema";
 import {addNewFinanceTransaction} from "../services/addNewFinanceTransaction";
 import {Transaction} from "entities/Finance/model/types/finance";
+import {StateSchema} from "app/providers/StoreProvider";
 
 const initialState: AddNewFinanceTransactionSchema = {
     data: undefined,
@@ -18,6 +19,9 @@ export const addNewFinanceTransactionSlice = createSlice({
                 ...action.payload
             };
         },
+        clearForm: (state) => {
+            state.data = undefined
+        }
     },
     extraReducers: (builder) => {
         builder

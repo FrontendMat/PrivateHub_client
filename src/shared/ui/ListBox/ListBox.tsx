@@ -1,44 +1,49 @@
-import {Fragment, ReactNode, useDeferredValue, useMemo} from 'react';
+import React, {Fragment, ReactNode} from 'react';
 import { Listbox as HListBox } from '@headlessui/react';
 import cls from "./ListBox.module.scss"
-import {classNames, Mods} from "shared/lib/classNames/classNames";
+import {classNames} from "shared/lib/classNames/classNames";
 
 export interface ListBoxItems {
-    value: string | undefined,
-    content: ReactNode | undefined,
+    value: string |  undefined,
+    content: ReactNode |  undefined,
     unavailable?: boolean;
     id?: string;
 }
 
-export enum ListBoxTheme {
-    BOTTOM_LIST = 'bottom_list',
-    TOP_LIST = 'top_list',
-}
+export type ListBoxTheme = 'bottom_list' | 'top_list';
+
+export type ListBoxDirection = 'left' | 'right';
 
 export interface ListBoxProps<T extends string> {
     items?: ListBoxItems[];
     className?: string;
-    value?: string;
+    value?: string | ReactNode;
     defaultValue?: string;
     onChange: (value: T) => void;
     readonly?: boolean;
     title?: string;
-    theme?: ListBoxTheme
+    clear?: boolean;
+    theme?: ListBoxTheme;
+    direction?: ListBoxDirection;
 }
 
-const emptyArr: ListBoxItems[] = [{value: 'No Data', content: 'No Data'}]
+const emptyArr: ListBoxItems[] = [{value: 'No Data', content: 'No Data', unavailable: true}]
 
 export function ListBox<T extends string>(props: ListBoxProps<T>) {
     const {
-        items= emptyArr,
+        items = [],
         value,
+        clear = false,
         defaultValue,
         onChange,
         readonly,
-        theme = ListBoxTheme.BOTTOM_LIST,
+        theme = 'bottom_list',
+        direction = 'left',
         title,
         className
     } = props;
+
+    let array = items?.length > 0 ? items : emptyArr;
 
     return (
         <div className={cls.ListBoxWrapper}>
@@ -55,21 +60,23 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
                 onChange={onChange}
             >
                 <HListBox.Button
-                    className={classNames(cls.trigger, {[cls.triggerTitle]: title})}
+                    className={classNames(cls.trigger, {[cls.triggerTitle]: title, [cls.clear_trigger]: clear})}
                 >
                     {value === '' || !value ? defaultValue : value}
                 </HListBox.Button>
-                <HListBox.Options className={cls.options}>
-                    {items.map((item) => (
+                <HListBox.Options className={classNames(cls.options, {[cls.clear]: clear}, [cls[direction]])}>
+                    {array?.map((item) => (
                         <HListBox.Option
-                            key={item.value}
+                            key={item.id}
                             value={item.value}
                             disabled={item.unavailable}
                             as={Fragment}>
-                            {({ active, selected }) => (
+                            {({ active, selected }: any) => (
                                 <li
                                     className={classNames(cls.item,{
-                                        [cls.active]: active, [cls.selected]: selected, [cls.disabledItem]: item.unavailable
+                                        [cls.active]: active,
+                                        [cls.disabledItem]: item.unavailable,
+                                        [cls.clear]: clear
                                     })}
                                 >
                                     {item.content}

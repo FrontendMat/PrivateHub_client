@@ -17,14 +17,17 @@ import {Text} from "shared/ui/Text/Text";
 import {Card} from "shared/ui/Card";
 import {Icon, IconSize} from "shared/ui/Icon/Icon";
 import MoneyIcon from "shared/assets/icons/money.svg";
-import PigIcon from "shared/assets/icons/money-pig.svg";
 import {Form} from "shared/ui/Form/Form";
+import CloseIcon from "shared/assets/icons/close.svg";
+import {Alert} from "shared/ui/Alert/Alert";
 
 interface AddNewFinanceCategoryFormProps {
     className?: string;
     onModalClose: () => void;
     categories?: Finance[];
     financeType: FinanceType;
+    onSuccess: () => void;
+    setAlertText: (text: string) => void;
 }
 
 const reducers: ReducersList = {
@@ -35,29 +38,24 @@ const AddNewFinanceTransactionForm = memo((props: AddNewFinanceCategoryFormProps
     const {
         className,
         onModalClose,
+        setAlertText,
         financeType,
-        categories = []
+        onSuccess,
+        categories= []
     } = props;
-    const {t} = useTranslation();
+    const {t} = useTranslation('finance');
     const finance = useSelector(getNewFinanceTransactionData);
     const isLoading = useSelector(getNewFinanceTransactionIsLoading);
     const error = useSelector(getNewFinanceTransactionError);
     const dispatch = useAppDispatch();
     const [category, setCategory] = useState('')
-    const [isSuccess, setIsSuccess] = useState(false)
-
-    const onSuccess = useCallback(() => {
-        setIsSuccess(true)
-    }, [])
-
-    const isIncomes = financeType === 'Incomes';
 
     const options = categories?.map((e) => (
         {
             value: e._id,
             content: e.name,
         }
-    ))
+    ));
 
     const setName = useCallback((value: string) => {
         const parsedValue = Number(value);
@@ -65,7 +63,7 @@ const AddNewFinanceTransactionForm = memo((props: AddNewFinanceCategoryFormProps
         if (!isNaN(parsedValue) && parsedValue.toString().length <= 7) {
             dispatch(addNewFinanceTransactionActions.addFinance({amount: parsedValue}));
         }
-    }, [dispatch])
+    }, [dispatch]);
 
     const setType = useCallback((value: string) => {
         const categoryName = categories?.find( e => e._id === value)
@@ -74,28 +72,52 @@ const AddNewFinanceTransactionForm = memo((props: AddNewFinanceCategoryFormProps
         }
 
         dispatch(addNewFinanceTransactionActions.addFinance({category: value}))
-    }, [dispatch, categories])
+    }, [dispatch, categories]);
+
+    const clearForm = useCallback(() => {
+        dispatch(addNewFinanceTransactionActions.clearForm());
+        setCategory('');
+
+    }, [dispatch]);
 
     const createCategory = useCallback(async () => {
         const result = await dispatch(addNewFinanceTransaction(financeType));
 
         if (result.meta.requestStatus === 'fulfilled') {
             onModalClose();
+            setAlertText(t('Successful transaction'))
             onSuccess();
         }
-    }, [dispatch, onSuccess, onModalClose, financeType])
+    }, [t, dispatch, onSuccess, onModalClose, financeType, setAlertText]);
 
     return (
         <DynamicModuleLoader reducers={reducers}>
+            {error &&
+                <Alert
+                    text={error}
+                    color={'error'}
+                />
+            }
             <Form>
                 <VStack gap={'20'} className={classNames('', {}, [className])}>
                     <HStack max className={cls.title} align={'center'} justify={'between'}>
                         <Text
-                            text={'Value'}
+                            text={t('Value')}
                             theme={'primary'}
                             size={'size_l'}
                         />
-                        <Icon size={IconSize.M} Svg={PigIcon} color={isIncomes ? 'green' : 'red'} hover={isIncomes ? 'green' : 'red'}/>
+                        <Button
+                            square
+                            onClick={onModalClose}
+                            theme={ButtonTheme.CLEAR}
+                        >
+                            <Icon
+                                Svg={CloseIcon}
+                                color={'gray'}
+                                size={IconSize.S}
+                                pointer
+                            />
+                        </Button>
                     </HStack>
                     <VStack max gap={'20'} align={'start'}>
                         <HStack max align={'center'}>
@@ -115,15 +137,15 @@ const AddNewFinanceTransactionForm = memo((props: AddNewFinanceCategoryFormProps
                                 theme={InputTheme.WITH_ICON}
                                 value={finance?.amount}
                                 onChange={setName}
-                                placeholder={'Enter value'}
+                                placeholder={t('Enter value')}
                             />
                         </HStack>
-                        <ListBox<any>
+                        <ListBox<string>
                             onChange={setType}
                             value={category}
-                            defaultValue={'Select Category'}
+                            defaultValue={t('Select Category')}
                             items={options}
-                            title={'Type'}
+                            title={t('Type')}
                         />
                     </VStack>
                     <HStack
@@ -132,10 +154,10 @@ const AddNewFinanceTransactionForm = memo((props: AddNewFinanceCategoryFormProps
                         justify={'between'}
                     >
                         <Button
-                            onClick={onModalClose}
+                            onClick={clearForm}
                             theme={ButtonTheme.OUTLINE_RED}
                         >
-                            Cancel
+                            {t('Clear')}
                         </Button>
                         <Button
                             type={'submit'}
@@ -143,7 +165,7 @@ const AddNewFinanceTransactionForm = memo((props: AddNewFinanceCategoryFormProps
                             theme={ButtonTheme.BACKGROUND}
                             disabled={isLoading}
                         >
-                            Create
+                            {t('Create')}
                         </Button>
                     </HStack>
                 </VStack>

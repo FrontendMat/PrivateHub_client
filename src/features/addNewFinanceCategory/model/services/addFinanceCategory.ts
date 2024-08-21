@@ -24,8 +24,8 @@ export const addFinanceCategory = createAsyncThunk<
             dispatch(fetchFinanceByType(type))
 
             return response.data
-        } catch (e) {
-            return rejectWithValue(String(e));
+        } catch (e: any) {
+            return rejectWithValue(String(e.response.data.message));
         }
     },
 );

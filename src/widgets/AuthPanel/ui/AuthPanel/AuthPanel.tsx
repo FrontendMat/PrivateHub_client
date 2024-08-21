@@ -6,7 +6,10 @@ import {Card} from "shared/ui/Card";
 import {HStack} from "shared/ui/Stack";
 import {AuthTextBlock} from "../AuthTextBlock/AuthTextBlock";
 import {LoginForm} from "features/loginByUserEmail";
-import {RegistrationForm} from "features/registerByUsername";
+import {RegistrationForm} from "features/registerByUserEmail";
+import {useSelector} from "react-redux";
+import {getUserAuthData} from "entities/User";
+import {WelcomeBlock} from "../WelcomeBlock/WelcomeBlock";
 
 interface AuthPanelProps {
     className?: string
@@ -17,6 +20,7 @@ export const AuthPanel = memo((props: AuthPanelProps) => {
         className,
     } = props;
     const {t} = useTranslation();
+    const userData = useSelector(getUserAuthData);
     const [newUser, setNewUser] = useState(false);
 
     const toggleForms = useCallback(() => {
@@ -28,6 +32,11 @@ export const AuthPanel = memo((props: AuthPanelProps) => {
     }
     const mods2: Mods = {
         [cls.active]: newUser
+    }
+
+    if (userData && !userData.isActivated) {
+        console.log('here33')
+        return <WelcomeBlock/>
     }
 
     return (

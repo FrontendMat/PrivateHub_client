@@ -1,8 +1,8 @@
 export interface User {
     id: string;
     username: string;
-    userlastname: string;
-    isActive? : boolean;
+    isActivated?: boolean;
+    role?: string;
 }
 
 export interface AuthResponse {

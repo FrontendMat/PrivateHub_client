@@ -2,6 +2,8 @@ import {classNames, Mods} from "shared/lib/classNames/classNames";
 import cls from './Card.module.scss';
 import {HTMLAttributes, ReactNode} from "react";
 
+export type CardWidth = 'max' | 'fit_content' | 'default';
+
 export type CardPadding = '0' | '10' | '16' | '20' | '40' | '60' | 'icon' | 'text';
 
 export type CardBorder = 'full' | 'full_top' | 'full_bottom' | 'full_left' | 'full_right';
@@ -12,7 +14,8 @@ interface CardProps extends HTMLAttributes<HTMLDivElement> {
     className?: string;
     children?: ReactNode;
     padding?: CardPadding;
-    max?: boolean;
+    width?: CardWidth;
+    maxHeight?: boolean;
     theme?: CardThemes;
     border?: CardBorder;
     opacity?: boolean;
@@ -29,6 +32,12 @@ const paddingClasses: Record<CardPadding, string> = {
     60: cls.padding60,
     icon: cls.paddingIcon,
     text: cls.paddingText
+}
+
+const widthClasses: Record<CardWidth, string> = {
+    max: cls.max,
+    fit_content: cls.fit_content,
+    default: ''
 }
 
 const borderClasses: Record<CardBorder, string> = {
@@ -59,18 +68,20 @@ export const Card = (props: CardProps) => {
         children,
         noShadow,
         animate,
-        max
+        width = 'default',
+        maxHeight
     } = props;
 
     const additional = [
         className,
         paddingClasses[padding],
         themesClasses[theme],
-        borderClasses[border]
+        borderClasses[border],
+        widthClasses[width],
     ]
 
     const mods: Mods = {
-        [cls.max]: max,
+        [cls.maxHeight]: maxHeight,
         [cls.opacity]: opacity,
         [cls.noShadow]: noShadow,
         [cls.animate]: animate

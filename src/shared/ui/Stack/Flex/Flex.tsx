@@ -1,11 +1,11 @@
 import { classNames, Mods } from 'shared/lib/classNames/classNames';
-import { DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
+import {DetailedHTMLProps, HTMLAttributes, memo, ReactNode} from 'react';
 import cls from './Flex.module.scss';
 
 export type FlexJustify = 'start' | 'center' | 'end' | 'between';
 export type FlexAlign = 'start' | 'center' | 'end';
 export type FlexDirection = 'row' | 'column';
-export type FlexGap = '2' | '4' | '8' | '10' | '16' | '20' | '32' | '40';
+export type FlexGap = '2' | '4' | '8' | '10' | '14' | '16' | '20' | '32' | '40';
 
 const justifyClasses: Record<FlexJustify, string> = {
     start: cls.justifyStart,
@@ -30,6 +30,7 @@ const gapClasses: Record<FlexGap, string> = {
     4: cls.gap4,
     8: cls.gap8,
     10: cls.gap10,
+    14: cls.gap14,
     16: cls.gap16,
     20: cls.gap20,
     32: cls.gap32,

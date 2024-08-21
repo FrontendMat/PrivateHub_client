@@ -36,7 +36,7 @@ export const Table = memo((props: TableHeaderProps) => {
         children,
         actions
     } = props;
-    const {t} = useTranslation();
+    const {t} = useTranslation('translation');
 
     const additional = [
         className,
@@ -56,7 +56,7 @@ export const Table = memo((props: TableHeaderProps) => {
                     {actions}
                 </HStack>
                 <Text
-                    text={'Value'}
+                    text={t('Value')}
                     theme={'secondary'}
                 />
             </HStack>

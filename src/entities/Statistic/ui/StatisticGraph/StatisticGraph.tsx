@@ -71,7 +71,7 @@ export const StatisticGraph = memo((props: StatisticGraphPanelProps) => {
 
     return (
         <HStack max gap={'20'} className={classNames('', mods, [className])}>
-            <Card max className={classNames('', {}, [className])}>
+            <Card width={'max'} className={classNames('', {}, [className])}>
                 <VStack gap={'20'} max maxHeight>
                     <HStack gap={'10'} align={'center'}>
                         <Text

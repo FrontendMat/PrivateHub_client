@@ -7,7 +7,7 @@ export function UnAuth({children}: {children: JSX.Element}) {
     const auth = useSelector(getUserAuthData);
     const location = useLocation();
 
-    if (auth && location.pathname === RoutePath.auth) {
+    if (auth && location.pathname === RoutePath.auth && auth.isActivated) {
         return <Navigate to={RoutePath.main} state={{from: location}} replace/>;
     }
 

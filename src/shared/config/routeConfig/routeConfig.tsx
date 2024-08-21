@@ -6,17 +6,24 @@ import {TasksPage} from "pages/TasksPage";
 import {ProfilePage} from "pages/ProfilePage";
 import {SettingsPage} from "pages/SettingsPage";
 import {FinancePage} from "pages/FinancePage";
+import {CalendarPage} from "pages/CalendarPage";
+import {BankPage} from "pages/BankPage";
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
 }
 
 export enum AppRoutes {
+    //Authorization
     AUTH = 'auth',
+
+    //Panel
     MAIN = 'main',
     TASKS = 'tasks',
     PROFILE = 'profile',
     SETTINGS = 'settings',
+    CALENDAR = 'calendar',
+    BANK = 'bank',
     FINANCE = 'finance',
 
     //LAST ROUTE
@@ -27,8 +34,10 @@ export const RoutePath: Record<AppRoutes, string> = {
     [AppRoutes.MAIN]: '/',
     [AppRoutes.AUTH]: '/auth',
     [AppRoutes.TASKS]: '/tasks',
-    [AppRoutes.PROFILE]: '/profile',
+    [AppRoutes.PROFILE]: '/profile/', //name + id
     [AppRoutes.SETTINGS]: '/settings',
+    [AppRoutes.CALENDAR]: '/calendar',
+    [AppRoutes.BANK]: '/bank',
     [AppRoutes.FINANCE]: '/finance',
 
     //LAST ROUTE
@@ -40,7 +49,6 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         path: RoutePath.auth,
         element: <LoginPage/>
     },
-
     //AUTH ONLY ROUTES
     [AppRoutes.MAIN]: {
         path: RoutePath.main,
@@ -53,7 +61,7 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
         authOnly: true
     },
     [AppRoutes.PROFILE]: {
-        path: RoutePath.profile,
+        path: `${RoutePath.profile}:name/:id`,
         element: <ProfilePage/>,
         authOnly: true
     },
@@ -65,6 +73,16 @@ export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.FINANCE]: {
         path: RoutePath.finance,
         element: <FinancePage/>,
+        authOnly: true
+    },
+    [AppRoutes.CALENDAR]: {
+        path: RoutePath.calendar,
+        element: <CalendarPage/>,
+        authOnly: true
+    },
+    [AppRoutes.BANK]: {
+        path: RoutePath.bank,
+        element: <BankPage/>,
         authOnly: true
     },
 

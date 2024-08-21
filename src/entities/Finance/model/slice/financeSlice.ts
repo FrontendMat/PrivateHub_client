@@ -29,6 +29,7 @@ export const financeSlice = createSlice({
             })
             .addCase(fetchFinanceByType.rejected, (state, action) => {
                 state.isLoading = false;
+                state.error = action.payload;
             })
     },
 })

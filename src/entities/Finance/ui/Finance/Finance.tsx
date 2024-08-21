@@ -20,7 +20,8 @@ interface IncomesProps {
     className?: string;
     onOpenModal?: () => void;
     onOpenEditModal?: () => void;
-    title: FinanceType;
+    title: string;
+    type: FinanceType;
     color: TableHeaderTheme;
 }
 
@@ -32,11 +33,12 @@ export const Finance = memo((props: IncomesProps) => {
     const {
         className,
         title,
+        type,
         color,
         onOpenModal,
         onOpenEditModal,
     } = props;
-    const {t} = useTranslation();
+    const {t} = useTranslation('finance');
     const data = useSelector(getFinanceData);
     const isLoading = useSelector(getFinanceIsLoading);
     const error = useSelector(getFinanceError);
@@ -44,20 +46,24 @@ export const Finance = memo((props: IncomesProps) => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(fetchFinanceByType(title))
-    }, [dispatch, title]);
+        dispatch(fetchFinanceByType(type))
+    }, [type, dispatch]);
 
     return (
-        <DynamicModuleLoader reducers={reducers} removeAfterUnmount={false}>
-            <HStack align={'start'} gap={'20'} className={classNames(cls.Incomes, {}, [className])}>
-                <Card max padding={'20'}>
+        <DynamicModuleLoader reducers={reducers}>
+            <HStack
+                align={'start'}
+                gap={'20'}
+                className={classNames(cls.Incomes, {}, [className])}
+            >
+                <Card width={'max'} padding={'20'}>
                     <VStack max gap={'10'}>
                         <FinanceActionPanel
                             onOpenModal={onOpenModal}
                             onOpenEditModal={onOpenEditModal}
                         />
                         <FinanceTable
-                            title={title}
+                            title={t(title)}
                             color={color}
                             data={data}
                             totalValue={totalValue}

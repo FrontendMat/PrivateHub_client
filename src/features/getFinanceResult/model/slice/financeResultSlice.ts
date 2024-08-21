@@ -20,9 +20,7 @@ export const financeResultSlice = createSlice({
             })
             .addCase(fetchFinanceResult.fulfilled, (state, action: PayloadAction<FinanceResult>) => {
                 state.isLoading = false;
-                console.log(action.payload)
                 state.data = action.payload;
-                console.log(state.data)
             })
             .addCase(fetchFinanceResult.rejected, (state, action) => {
                 state.isLoading = false;
