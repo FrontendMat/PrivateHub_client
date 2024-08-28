@@ -1,9 +1,9 @@
 import {classNames} from "shared/lib/classNames/classNames";
 import {useTranslation} from "react-i18next";
 import cls from './AddNewFinanceCategoryForm.module.scss';
-import {memo, useCallback, useState} from "react";
+import {memo, useCallback} from "react";
 import {HStack, VStack} from "shared/ui/Stack";
-import {Button, ButtonSize, ButtonTheme} from "shared/ui/Button/Button";
+import {Button, ButtonTheme} from "shared/ui/Button/Button";
 import {useSelector} from "react-redux";
 import {
     getFinCategoryData,

@@ -30,4 +30,5 @@
     "./src/**/*.ts",
     "./src/**/*.tsx",
   ],
+  "isolatedModules": true
 }
