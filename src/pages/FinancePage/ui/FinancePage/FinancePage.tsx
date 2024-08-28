@@ -21,7 +21,7 @@ const FinancePage = memo((props: FinancePageProps) => {
         <Page className={classNames(cls.FinancePage, {}, [className])}>
             <VStack gap={'20'}>
                 <FinancePageModals/>
-                <TransactionList/>
+                {/*<TransactionList/>*/}
             </VStack>
         </Page>
     );
