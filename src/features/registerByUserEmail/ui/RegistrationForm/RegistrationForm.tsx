@@ -104,7 +104,7 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
                         </HStack>
                         <HStack align={'center'} max>
                             <Input
-                                placeholder={t('Password (must be between 8 and 14 characters)')}
+                                placeholder={t('Password (8 - 14 characters)')}
                                 value={password}
                                 onChange={onChangePassword}
                                 theme={InputTheme.BACKGROUND}
