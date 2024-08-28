@@ -17,7 +17,6 @@ import {
 import {Alert} from "shared/ui/Alert/Alert";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {registerByEmail} from "../../model/services/registerByEmail";
-import {useNavigate} from "react-router-dom";
 
 interface RegistrationFormProps {
     className?: string
@@ -105,7 +104,7 @@ export const RegistrationForm = memo((props: RegistrationFormProps) => {
                         </HStack>
                         <HStack align={'center'} max>
                             <Input
-                                placeholder={t('Password')}
+                                placeholder={t('Password (must be between 8 and 14 characters)')}
                                 value={password}
                                 onChange={onChangePassword}
                                 theme={InputTheme.BACKGROUND}
