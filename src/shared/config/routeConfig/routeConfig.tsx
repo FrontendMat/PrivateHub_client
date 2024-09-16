@@ -1,44 +1,40 @@
-import { RouteProps } from 'react-router-dom'
-import {MainPage} from "pages/MainPage";
+import {RouteProps} from 'react-router-dom'
 import {NotFoundPage} from "pages/NotFoundPage";
-import {LoginPage} from "pages/AuthPage";
-import {TasksPage} from "pages/TasksPage";
-import {ProfilePage} from "pages/ProfilePage";
 import {SettingsPage} from "pages/SettingsPage";
-import {FinancePage} from "pages/FinancePage";
-import {CalendarPage} from "pages/CalendarPage";
-import {BankPage} from "pages/BankPage";
+import {HomePage} from "pages/HomePage";
+import {AuthPage} from "pages/AuthPage";
+import {ExpensesPage} from "pages/ExpensesPage";
+import {IncomesPage} from "pages/IncomesPage";
+import {StatisticPage} from "pages/StatisticPage";
 
 export type AppRoutesProps = RouteProps & {
     authOnly?: boolean;
 }
 
 export enum AppRoutes {
-    //Authorization
+    //Public
+    HOME = 'home',
     AUTH = 'auth',
 
     //Panel
-    MAIN = 'main',
-    TASKS = 'tasks',
-    PROFILE = 'profile',
     SETTINGS = 'settings',
-    CALENDAR = 'calendar',
-    BANK = 'bank',
-    FINANCE = 'finance',
+    INCOMES = 'incomes',
+    EXPENSES = 'expenses',
+    STATISTIC = 'statistic',
 
     //LAST ROUTE
     NOT_FOUND = 'not_found',
 }
 
 export const RoutePath: Record<AppRoutes, string> = {
-    [AppRoutes.MAIN]: '/',
+    [AppRoutes.HOME]: '/',
     [AppRoutes.AUTH]: '/auth',
-    [AppRoutes.TASKS]: '/tasks',
-    [AppRoutes.PROFILE]: '/profile/', //name + id
+
+    //PRIVATE
+    [AppRoutes.INCOMES]: '/incomes',
+    [AppRoutes.EXPENSES]: '/expenses',
     [AppRoutes.SETTINGS]: '/settings',
-    [AppRoutes.CALENDAR]: '/calendar',
-    [AppRoutes.BANK]: '/bank',
-    [AppRoutes.FINANCE]: '/finance',
+    [AppRoutes.STATISTIC]: '/statistic',
 
     //LAST ROUTE
     [AppRoutes.NOT_FOUND]: '*'
@@ -47,42 +43,33 @@ export const RoutePath: Record<AppRoutes, string> = {
 export const routeConfig: Record<AppRoutes, AppRoutesProps> = {
     [AppRoutes.AUTH]: {
         path: RoutePath.auth,
-        element: <LoginPage/>
+        element: <AuthPage/>
     },
+
     //AUTH ONLY ROUTES
-    [AppRoutes.MAIN]: {
-        path: RoutePath.main,
-        element: <MainPage/>,
+    [AppRoutes.HOME]: {
+        path: RoutePath.home,
+        element: <HomePage/>,
         authOnly: true
     },
-    [AppRoutes.TASKS]: {
-        path: RoutePath.tasks,
-        element: <TasksPage/>,
+    [AppRoutes.INCOMES]: {
+        path: RoutePath.incomes,
+        element: <IncomesPage/>,
         authOnly: true
     },
-    [AppRoutes.PROFILE]: {
-        path: `${RoutePath.profile}:name/:id`,
-        element: <ProfilePage/>,
+    [AppRoutes.EXPENSES]: {
+        path: RoutePath.expenses,
+        element: <ExpensesPage/>,
+        authOnly: true
+    },
+    [AppRoutes.STATISTIC]: {
+        path: RoutePath.statistic,
+        element: <StatisticPage/>,
         authOnly: true
     },
     [AppRoutes.SETTINGS]: {
         path: RoutePath.settings,
         element: <SettingsPage/>,
-        authOnly: true
-    },
-    [AppRoutes.FINANCE]: {
-        path: RoutePath.finance,
-        element: <FinancePage/>,
-        authOnly: true
-    },
-    [AppRoutes.CALENDAR]: {
-        path: RoutePath.calendar,
-        element: <CalendarPage/>,
-        authOnly: true
-    },
-    [AppRoutes.BANK]: {
-        path: RoutePath.bank,
-        element: <BankPage/>,
         authOnly: true
     },
 

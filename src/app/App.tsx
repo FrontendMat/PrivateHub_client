@@ -8,7 +8,6 @@ import {
     getUserInited,
     checkIsUserAuth
 } from "entities/User";
-import {Sidebar} from "widgets/Sidebar";
 import {Header} from "widgets/Header";
 import {useTheme} from "shared/lib/hooks/useTheme/useTheme";
 
@@ -20,7 +19,7 @@ const App = () => {
     const isNewUser = isAuth && !isAuth.isActivated;
 
     useEffect(() => {
-        dispatch(checkIsUserAuth())
+        const result = dispatch(checkIsUserAuth());
     }, [dispatch]);
 
     if (!isAuth || isNewUser) {
@@ -38,7 +37,6 @@ const App = () => {
             <Suspense fallback=''>
                 <Header/>
                 <div className='content-page'>
-                    <Sidebar/>
                     {inited && <AppRouter/>}
                 </div>
             </Suspense>

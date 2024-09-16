@@ -1,0 +1,11 @@
+.HeaderNavItem {
+    padding: 7px 14px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    border-radius: var(--border-radius);
+
+    &:hover {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+    }
+}

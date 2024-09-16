@@ -68,20 +68,12 @@
     cursor: pointer;
 }
 
-//.active {
-//    color: var(--secondary-color);
-//    background: var(--primary-color);
-//}
-
-//.selected {
-//    color: var(--primary-color);
-//}
-
 .disabled {
     .trigger {
         border: none;
         color: var(--primary-color);
         cursor: auto;
+        font-weight: 800;
     }
 }
 

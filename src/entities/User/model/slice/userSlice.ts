@@ -1,8 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {AuthResponse, User, UserSchema} from "../types/user";
+import {AuthResponse, UserSchema} from "../types/user";
 import {USER_LOCALSTORAGE_KEY} from "shared/consts/localstorage";
 import {checkIsUserAuth} from "../../model/services/checkIsUserAuth/checkIsUserAuth";
-import {logoutAuth} from "entities/User/model/services/logoutUser/logoutUser";
+import {logoutAuth} from "../services/logoutUser/logoutUser";
 
 const initialState: UserSchema = {
     _inited: false,
@@ -14,6 +14,11 @@ export const userSlice = createSlice({
     reducers: {
         setAuthData: (state, action: PayloadAction<AuthResponse>) => {
             state.authData = action.payload.user;
+        },
+        setUserUpdateData: (state, action: PayloadAction<number>) => {
+            if (state.authData) {
+                state.authData.financeUpdateDate = action.payload;
+            }
         },
         logout: (state) => {
             state.authData = undefined;

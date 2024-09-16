@@ -5,5 +5,4 @@ export type colorThemes =
     | 'gray'
     | 'green'
     | 'yellow'
-    | 'red'
-    ;
+    | 'red';

@@ -4,7 +4,7 @@ import cls from "./ListBox.module.scss"
 import {classNames} from "shared/lib/classNames/classNames";
 
 export interface ListBoxItems {
-    value: string |  undefined,
+    value: string | number | undefined,
     content: ReactNode |  undefined,
     unavailable?: boolean;
     id?: string;
@@ -43,7 +43,7 @@ export function ListBox<T extends string>(props: ListBoxProps<T>) {
         className
     } = props;
 
-    let array = items?.length > 0 ? items : emptyArr;
+    const array = items?.length > 0 ? items : emptyArr;
 
     return (
         <div className={cls.ListBoxWrapper}>

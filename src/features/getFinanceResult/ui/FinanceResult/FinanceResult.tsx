@@ -5,11 +5,9 @@ import {HStack} from "shared/ui/Stack";
 import {RoutePath} from "shared/config/routeConfig/routeConfig";
 import MoneyIcon from "shared/assets/icons/money-result.svg";
 import BalanceIcon from "shared/assets/icons/balance.svg";
-import BankIcon from "shared/assets/icons/bank.svg";
 import {FinanceResultCard} from "../FinanceResultCard/FinanceResultCard";
 import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";
 import {financeResultReducer} from "../../model/slice/financeResultSlice";
-import {BadgeNew} from "shared/ui/Badge";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {fetchFinanceResult} from "../../model/services/fetchFinanceResult";
 import {useSelector} from "react-redux";
@@ -44,7 +42,7 @@ export const FinanceResult = memo((props: FinanceResultProps) => {
             <HStack max gap={'20'} align={'center'} className={classNames('', {}, [className])}>
                 <FinanceResultCard
                     isLoading={isLoading}
-                    pathLink={RoutePath.finance}
+                    pathLink={RoutePath.incomes}
                     icon={MoneyIcon}
                     title={t('Incomes')}
                     value={data?.incomes}
@@ -53,7 +51,7 @@ export const FinanceResult = memo((props: FinanceResultProps) => {
                 />
                 <FinanceResultCard
                     isLoading={isLoading}
-                    pathLink={RoutePath.finance}
+                    pathLink={RoutePath.expenses}
                     icon={MoneyIcon}
                     title={t('Expenses')}
                     value={data?.expenses}
@@ -62,23 +60,13 @@ export const FinanceResult = memo((props: FinanceResultProps) => {
                 />
                 <FinanceResultCard
                     isLoading={isLoading}
-                    pathLink={RoutePath.finance}
+                    pathLink={RoutePath.statistic}
                     icon={BalanceIcon}
                     title={t('Summary')}
                     value={Math.abs(data?.summary || 0)}
                     color={'primary'}
                     mark={data?.mark || ''}
                 />
-                <BadgeNew color={'red'}>
-                    <FinanceResultCard
-                        isLoading={isLoading}
-                        pathLink={RoutePath.bank}
-                        icon={BankIcon}
-                        title={t('My Bank')}
-                        value={92000}
-                        color={'yellow'}
-                    />
-                </BadgeNew>
             </HStack>
         </DynamicModuleLoader>
     );

@@ -9,6 +9,7 @@ import {RegistrationSchema} from "features/registerByUserEmail";
 import {FinanceStatisticSchema} from "features/getFinanceStatistic";
 import {AddFinanceCategorySchema} from "features/addNewFinanceCategory";
 import {AddNewFinanceTransactionSchema} from "features/addNewFinanceTransaction";
+import {UpdateDateSchema} from "features/changeUpdateDate/model/types/types";
 
 export interface StateSchema {
     user: UserSchema,
@@ -21,6 +22,7 @@ export interface StateSchema {
     addNewFinanceTransaction?: AddNewFinanceTransactionSchema,
     financeStatistic?: FinanceStatisticSchema,
     financeResult?: FinanceResultSchema;
+    updateFinanceDate?: UpdateDateSchema
 }
 
 export type StateSchemaKey = keyof StateSchema;

@@ -40,15 +40,15 @@ const NotFoundPage = (props: NotFoundPageProps) => {
                             size={'size_m'}
                         />
                     </VStack>
-                    <AppLink
-                        to={RoutePath.main}
-                    >
-                        <Button
-                            theme={ButtonTheme.BACKGROUND}
-                        >
-                            Go Back
-                        </Button>
-                    </AppLink>
+                    {/*<AppLink*/}
+                    {/*    to={RoutePath.main}*/}
+                    {/*>*/}
+                    {/*    <Button*/}
+                    {/*        theme={ButtonTheme.BACKGROUND}*/}
+                    {/*    >*/}
+                    {/*        Go Back*/}
+                    {/*    </Button>*/}
+                    {/*</AppLink>*/}
                 </VStack>
             </Card>
         </Page>

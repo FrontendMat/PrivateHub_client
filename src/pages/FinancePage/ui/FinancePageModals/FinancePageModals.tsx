@@ -1,7 +1,6 @@
 import {memo, useMemo} from "react";
 import {useSelector} from "react-redux";
 import {useTranslation} from "react-i18next";
-import {useGetModals} from "../../lib/useGetModals";
 import {FinanceBlock, getFinanceData, getFinanceType} from "entities/Finance";
 import {FinanceStatistic} from "features/getFinanceStatistic";
 import {AddNewFinanceCategoryModal} from "features/addNewFinanceCategory";
@@ -11,6 +10,7 @@ import FinanceIcon from "shared/assets/icons/money.svg";
 import BarIcon from "shared/assets/icons/barChart.svg";
 import {Alert} from "shared/ui/Alert/Alert";
 import {BlockSwitcher} from "shared/ui/BlockSwitcher";
+import {useGetModals} from "widgets/FinancePanel/lib/useGetModals";
 
 export const FinancePageModals = memo(() => {
     const {t} = useTranslation('finance');
@@ -42,14 +42,7 @@ export const FinancePageModals = memo(() => {
                     color={'success'}
                 />
             }
-            <AddNewFinanceCategoryModal
-                setAlertText={setAlertText}
-                onSuccess={onSuccess}
-                title={financeType}
-                onClose={openModal}
-                isOpen={isAddModalOpen}
-                financeType={financeType}
-            />
+
             <AddNewFinanceTransactionModal
                 setAlertText={setAlertText}
                 onSuccess={onSuccess}

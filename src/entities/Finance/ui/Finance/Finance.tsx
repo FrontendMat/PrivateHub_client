@@ -1,7 +1,7 @@
 import {classNames} from "shared/lib/classNames/classNames";
 import cls from './Finance.module.scss';
 import {useTranslation} from "react-i18next";
-import {memo, useEffect} from "react";
+import {memo, ReactNode, useEffect} from "react";
 import {HStack, VStack} from "shared/ui/Stack";
 import {useSelector} from "react-redux";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
@@ -23,6 +23,7 @@ interface IncomesProps {
     title: string;
     type: FinanceType;
     color: TableHeaderTheme;
+    dateBlock?: ReactNode
 }
 
 const reducers: ReducersList = {
@@ -35,6 +36,7 @@ export const Finance = memo((props: IncomesProps) => {
         title,
         type,
         color,
+        dateBlock,
         onOpenModal,
         onOpenEditModal,
     } = props;
@@ -56,22 +58,35 @@ export const Finance = memo((props: IncomesProps) => {
                 gap={'20'}
                 className={classNames(cls.Incomes, {}, [className])}
             >
-                <Card width={'max'} padding={'20'}>
-                    <VStack max gap={'10'}>
-                        <FinanceActionPanel
-                            onOpenModal={onOpenModal}
-                            onOpenEditModal={onOpenEditModal}
-                        />
-                        <FinanceTable
-                            title={t(title)}
-                            color={color}
-                            data={data}
-                            totalValue={totalValue}
-                            isLoading={isLoading}
-                            error={error}
-                        />
-                    </VStack>
-                </Card>
+                <VStack
+                    gap={'20'}
+                    max
+                >
+                    <Card
+                        width={'max'}
+                        padding={'20'}
+                    >
+                        <VStack
+                            max
+                            gap={'10'}
+                        >
+                            <FinanceActionPanel
+                                onOpenModal={onOpenModal}
+                                onOpenEditModal={onOpenEditModal}
+                            />
+                            <FinanceTable
+                                title={t(title)}
+                                color={color}
+                                data={data}
+                                totalValue={totalValue}
+                                isLoading={isLoading}
+                                error={error}
+                            />
+                        </VStack>
+                    </Card
+                    >
+                    {dateBlock}
+                </VStack>
                 <FinanceGraph
                     data={data}
                     isLoading={isLoading}

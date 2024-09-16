@@ -1,2 +1,2 @@
 export {FinanceResult} from './ui/FinanceResult/FinanceResult';
-export {FinanceResultSchema} from './model/type/financeResultSchema';
+export type {FinanceResultSchema} from './model/type/financeResultSchema';

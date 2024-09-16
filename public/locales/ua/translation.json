@@ -11,5 +11,9 @@
   "Unauthorized": "Не авторизований",
   "Wrong email or password": "Не вірний логін чи пароль",
   "User with this Email already exist": "Користувач з даним Email вже існує",
-  "Log Out": "Вийти"
+  "Log Out": "Вийти",
+  "Home": "Головна",
+  "Incomes": "Доходи",
+  "Expenses": "Витрати",
+  "Statistic": "Статистика"
 }

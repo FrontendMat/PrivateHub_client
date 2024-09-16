@@ -12,9 +12,7 @@ const initialState: FinanceSchema = {
 export const financeSlice = createSlice({
     name: 'financeSlice',
     initialState,
-    reducers: {
-    },
-
+    reducers: {},
     extraReducers: (builder) => {
         builder
             .addCase(fetchFinanceByType.pending, (state) => {
@@ -23,8 +21,8 @@ export const financeSlice = createSlice({
             })
             .addCase(fetchFinanceByType.fulfilled, (state, action: PayloadAction<FinanceSchema>) => {
                 state.isLoading = false;
-                state.data = action.payload.data;
                 state.financeType = action.payload.financeType;
+                state.data = action.payload.data;
                 state.totalValue = action.payload.totalValue;
             })
             .addCase(fetchFinanceByType.rejected, (state, action) => {

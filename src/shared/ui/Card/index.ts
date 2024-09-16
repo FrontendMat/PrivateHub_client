@@ -1,1 +1,2 @@
-export {Card, CardThemes} from './ui/Card';
+export  {Card, } from './ui/Card';
+export type {CardThemes} from './ui/Card'

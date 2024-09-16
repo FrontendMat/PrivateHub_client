@@ -1,1 +1,1 @@
-export {AuthPageAsync as LoginPage} from './ui/AuthPage.async'
+export {AuthPageAsync as AuthPage} from './ui/AuthPage.async'

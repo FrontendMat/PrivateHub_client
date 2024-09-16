@@ -5,10 +5,17 @@ import {memo, useCallback, useState} from "react";
 import {HStack, VStack} from "shared/ui/Stack";
 import {Button, ButtonTheme} from "shared/ui/Button/Button";
 import {useSelector} from "react-redux";
-import {getNewFinanceTransactionData, getNewFinanceTransactionIsLoading, getNewFinanceTransactionError} from "../../model/selectors/getNewFinanceTransaction";
+import {
+    getNewFinanceTransactionData,
+    getNewFinanceTransactionIsLoading,
+    getNewFinanceTransactionError
+} from "../../model/selectors/getNewFinanceTransaction";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {Input, InputTheme} from "shared/ui/Input/Input";
-import {addNewFinanceTransactionReducer, addNewFinanceTransactionActions} from "../../model/slice/addNewFinanceTransactionSlice";
+import {
+    addNewFinanceTransactionReducer,
+    addNewFinanceTransactionActions
+} from "../../model/slice/addNewFinanceTransactionSlice";
 import {Finance, FinanceType} from "entities/Finance";
 import {ListBox} from "shared/ui/ListBox/ListBox";
 import {DynamicModuleLoader, ReducersList} from "shared/lib/components/DynamicModuleLoader/DynamicModuleLoader";

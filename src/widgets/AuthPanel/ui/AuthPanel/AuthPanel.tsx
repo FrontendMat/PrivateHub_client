@@ -35,7 +35,6 @@ export const AuthPanel = memo((props: AuthPanelProps) => {
     }
 
     if (userData && !userData.isActivated) {
-        console.log('here33')
         return <WelcomeBlock/>
     }
 

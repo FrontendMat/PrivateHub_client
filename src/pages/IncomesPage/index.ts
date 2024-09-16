@@ -1,0 +1,1 @@
+export {IncomesPageAsync as IncomesPage} from './ui/IncomesPage.async';

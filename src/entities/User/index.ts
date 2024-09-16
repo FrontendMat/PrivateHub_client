@@ -14,7 +14,7 @@ export {
     userReducer
 } from './model/slice/userSlice';
 
-export {
+export type {
     User,
     UserSchema,
     AuthResponse

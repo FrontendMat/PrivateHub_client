@@ -1,8 +1,6 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {User, userActions} from "entities/User";
 import {USER_LOCALSTORAGE_KEY} from "shared/consts/localstorage";
 import {ThunkConfig} from "app/providers/StoreProvider";
-import {AuthResponse} from "entities/User/model/types/user";
 
 export const logoutAuth = createAsyncThunk<
     void,
@@ -19,8 +17,6 @@ export const logoutAuth = createAsyncThunk<
             }
 
             localStorage.removeItem(USER_LOCALSTORAGE_KEY);
-            dispatch(userActions.setAuthData({} as AuthResponse));
-
             return response.data;
         } catch (e: any) {
             return rejectWithValue(String(e.response.data.message));

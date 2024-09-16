@@ -11,5 +11,9 @@
   "Unauthorized": "Unauthorized",
   "Wrong email or password": "Wrong email or password",
   "User with this Email already exist": "User with this Email already exist",
-  "Log Out": "Log Out"
+  "Log Out": "Log Out",
+  "Home": "Home",
+  "Incomes": "Incomes",
+  "Expenses": "Expenses",
+  "Statistic": "Statistic"
 }

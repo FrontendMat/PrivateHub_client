@@ -3,6 +3,7 @@ export interface User {
     username: string;
     isActivated?: boolean;
     role?: string;
+    financeUpdateDate?: number
 }
 
 export interface AuthResponse {

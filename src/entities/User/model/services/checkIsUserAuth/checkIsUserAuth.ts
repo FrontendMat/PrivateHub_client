@@ -1,5 +1,5 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
-import {userActions} from "entities/User";
+import {userActions} from "../../slice/userSlice";
 import {USER_LOCALSTORAGE_KEY} from "shared/consts/localstorage";
 import {ThunkConfig} from "app/providers/StoreProvider";
 import axios from "axios";
