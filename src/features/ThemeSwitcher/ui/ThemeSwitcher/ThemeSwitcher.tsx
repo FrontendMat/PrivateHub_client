@@ -14,8 +14,14 @@ export const ThemeSwitcher = memo(({className}: ThemeSwitcherProps) => {
     const {t} = useTranslation('settings');
 
     return (
-        <Card padding={'20'} className={classNames('', {}, [className])}>
-            <HStack gap={'10'} align={'center'}>
+        <Card
+            padding={'20'}
+            className={classNames('', {}, [className])}
+        >
+            <HStack
+                gap={'10'}
+                align={'center'}
+            >
                 <Text
                     text={t('Change Theme' + ':')}
                     size={'size_m'}

@@ -17,7 +17,7 @@ const SettingsPage = memo((props: SettingsPageProps) => {
 
     return (
         <Page className={classNames(cls.SettingsPage, {}, [className])}>
-            <ThemeSwitcher className={cls.theme}/>
+            <ThemeSwitcher/>
         </Page>
     );
 });

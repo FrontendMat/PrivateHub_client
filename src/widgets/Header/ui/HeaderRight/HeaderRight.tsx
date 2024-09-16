@@ -7,6 +7,10 @@ import {LangSwitcher} from "features/LangSwitcher";
 import {HStack} from "shared/ui/Stack";
 import {useAppDispatch} from "shared/lib/hooks/useAppDispatch/useAppDispatch";
 import {logoutAuth} from "entities/User";
+import {AppLink} from "shared/ui/AppLink/AppLink";
+import {RoutePath} from "shared/config/routeConfig/routeConfig";
+import {Icon, IconSize} from "shared/ui/Icon/Icon";
+import SettingsIcon from 'shared/assets/icons/settings.svg';
 
 interface HeaderRightProps {
     className?: string;
@@ -31,6 +35,20 @@ export const HeaderRight = memo((props: HeaderRightProps) => {
             gap={'10'}
             className={classNames('', {}, [className])}
         >
+            <AppLink
+                to={RoutePath.settings}
+            >
+                <HStack
+                    align={'center'}
+                    justify={'center'}
+                >
+                    <Icon
+                        Svg={SettingsIcon}
+                        size={IconSize.S}
+                        color={'gray'}
+                    />
+                </HStack>
+            </AppLink>
             <LangSwitcher/>
             <Text
                 size={'size_l'}
